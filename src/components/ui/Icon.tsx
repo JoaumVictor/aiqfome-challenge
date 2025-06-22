@@ -1,5 +1,8 @@
+// src/components/ui/Icon.tsx
+
 import React from "react";
 
+// Importa os SVGs como default exports
 import AiqFomeIcon from "../../../public/assets/icons/aiqfome.svg";
 import LocationIcon from "../../../public/assets/icons/location.svg";
 import MoneyIcon from "../../../public/assets/icons/money.svg";
