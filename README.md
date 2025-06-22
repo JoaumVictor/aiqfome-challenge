@@ -24,7 +24,7 @@ Este projeto é a solução para o desafio técnico da Aiqfome para a vaga de De
 Siga os passos abaixo para configurar e executar o projeto em sua máquina local:
 
 ```bash
-git clone [LINK_DO_SEU_REPOSITORIO]
+git clone https://github.com/JoaumVictor/aiqfome-challenge
 cd aiqfome-challenge
 
 # Instale as dependências
@@ -55,7 +55,15 @@ aiqfome-challenge/
 │   ├── app/                    # Rotas e layouts do Next.js (Server Components)
 │   │   ├── api/                # Rotas de API (se necessário, para mocks)
 │   │   ├── layout.tsx
-│   │   └── page.tsx
+│   │   ├── page.tsx            # Home (/)
+│   │   ├── stores/             # Catálogo da loja (/stores/[storeId])
+│   │   │   ├── [storeId]/
+│   │   │   │   ├── page.tsx
+│   │   │   │   └── products/   # Pedido da loja (/stores/[storeId]/products/[productId])
+│   │   │   │       └── [productId]/
+│   │   │   │           └── page.tsx
+│   │   └── cart/               # Ticket da loja (/cart)
+│   │       └── page.tsx
 │   ├── components/             # Componentes reutilizáveis
 │   │   ├── ui/                 # Componentes genéricos de UI (botões, cards, etc.)
 │   │   └── shared/             # Componentes específicos do domínio

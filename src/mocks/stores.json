@@ -1,0 +1,222 @@
+[
+  {
+    "id": "1",
+    "name": "Matsuri Concept",
+    "logoUrl": "https://placehold.co/80x80/FF7043/FFFFFF?text=Matsuri",
+    "deliveryFee": 0,
+    "deliveryTime": "30-40 min",
+    "distance": "5.2km",
+    "minOrderValue": 15.0,
+    "rating": 4.7,
+    "isOpen": true,
+    "closesAt": "20:00",
+    "freeDeliveryThreshold": 35.0,
+    "categories": [
+      {
+        "id": "cat1",
+        "name": "Niguiris",
+        "description": ""
+      },
+      {
+        "id": "cat2",
+        "name": "Ceviches",
+        "description": "Um prato super refrescante de peixe fatiado e marinado com limão"
+      },
+      {
+        "id": "cat3",
+        "name": "Temakis",
+        "description": "Sushi em forma de cone com salmão e cream cheese"
+      },
+      {
+        "id": "cat4",
+        "name": "Bebidas",
+        "description": ""
+      },
+      {
+        "id": "cat5",
+        "name": "Sobremesas",
+        "description": ""
+      }
+    ],
+    "products": [
+      {
+        "id": "prod1",
+        "categoryId": "cat2",
+        "name": "Ceviche de Salmão",
+        "description": "Salmão temperado com limão, cebola e pimenta",
+        "imageUrl": "https://placehold.co/150x150/FF7043/FFFFFF?text=Ceviche",
+        "basePrice": 19.9,
+        "reviews": 4.5,
+        "options": [
+          {
+            "type": "single",
+            "title": "Qual o tamanho?",
+            "minSelections": 1,
+            "maxSelections": 1,
+            "required": true,
+            "items": [
+              {
+                "id": "opt1_1",
+                "name": "Médio",
+                "price": 0.0,
+                "originalPrice": 22.9
+              },
+              { "id": "opt1_2", "name": "Grande", "price": 28.9 }
+            ]
+          },
+          {
+            "type": "multiple",
+            "title": "Acompanhamentos",
+            "minSelections": 0,
+            "maxSelections": 2,
+            "required": false,
+            "items": [
+              { "id": "opt2_1", "name": "Shoyu", "price": 0.0 },
+              { "id": "opt2_2", "name": "Gengibre", "price": 0.0 },
+              { "id": "opt2_3", "name": "Wasabi", "price": 0.0 },
+              { "id": "opt2_4", "name": "Sem acompanhamentos", "price": 0.0 }
+            ]
+          },
+          {
+            "type": "multiple",
+            "title": "Vai querer bebida?",
+            "minSelections": 0,
+            "maxSelections": 5,
+            "required": false,
+            "items": [
+              { "id": "opt3_1", "name": "Coca-cola", "price": 5.0 },
+              { "id": "opt3_2", "name": "Fanta Laranja", "price": 5.0 },
+              { "id": "opt3_3", "name": "Guaraná Antártica", "price": 5.0 },
+              { "id": "opt3_4", "name": "Suco Prats Laranja", "price": 6.0 },
+              { "id": "opt3_5", "name": "Água sem Gás", "price": 3.0 }
+            ]
+          },
+          {
+            "type": "single",
+            "title": "Precisa de talher?",
+            "minSelections": 1,
+            "maxSelections": 1,
+            "required": false,
+            "items": [
+              { "id": "opt4_1", "name": "Hashi", "price": 0.0 },
+              {
+                "id": "opt4_2",
+                "name": "Garfo e faca descartável",
+                "price": 1.0
+              }
+            ]
+          },
+          {
+            "type": "multiple",
+            "title": "Mais alguma coisa?",
+            "minSelections": 0,
+            "maxSelections": 2,
+            "required": false,
+            "items": [
+              { "id": "opt5_1", "name": "Biscoito da sorte", "price": 2.0 },
+              { "id": "opt5_2", "name": "Rolinho primavera", "price": 8.0 },
+              { "id": "opt5_3", "name": "Guioza", "price": 6.0 }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "prod2",
+        "categoryId": "cat3",
+        "name": "Temaki Filadélfia",
+        "description": "Arroz, salmão fresco, cream cheese e cebolinha",
+        "imageUrl": "https://placehold.co/150x150/FF7043/FFFFFF?text=Filadelfia",
+        "basePrice": 13.99,
+        "originalPrice": 17.0,
+        "reviews": 4.3,
+        "options": []
+      },
+      {
+        "id": "prod3",
+        "categoryId": "cat3",
+        "name": "Temaki Califórnia",
+        "description": "Kani, pepino e maçã ou manga",
+        "imageUrl": "https://placehold.co/150x150/FF7043/FFFFFF?text=California",
+        "basePrice": 13.99,
+        "reviews": 4.2,
+        "options": []
+      },
+      {
+        "id": "prod4",
+        "categoryId": "cat3",
+        "name": "Temaki Mix",
+        "description": "Escolha 3 ingredientes: shimeji, alface americana, rúcula, pepino, tomate seco, cream cheese, maionese",
+        "imageUrl": "https://placehold.co/150x150/FF7043/FFFFFF?text=Mix",
+        "basePrice": 13.99,
+        "isVariablePrice": true,
+        "reviews": 4.6,
+        "options": []
+      },
+      {
+        "id": "prod5",
+        "categoryId": "cat3",
+        "name": "Temaki Salmão picante",
+        "description": "Alga, arroz, salmão fresco, pimenta e cebolinha",
+        "imageUrl": "https://placehold.co/150x150/FF7043/FFFFFF?text=Picante",
+        "basePrice": 13.99,
+        "reviews": 4.1,
+        "options": []
+      },
+      {
+        "id": "prod6",
+        "categoryId": "cat4",
+        "name": "Coca-cola Lata",
+        "description": "Lata de 350ml",
+        "imageUrl": "https://placehold.co/150x150/FF0000/FFFFFF?text=Coca",
+        "basePrice": 10.0,
+        "reviews": 4.8,
+        "options": []
+      }
+    ]
+  },
+  {
+    "id": "2",
+    "name": "Subway - Avenida Center",
+    "logoUrl": "https://placehold.co/80x80/008000/FFFFFF?text=Subway",
+    "deliveryFee": 6.0,
+    "deliveryTime": "45-55 min",
+    "distance": "3.1km",
+    "minOrderValue": 20.0,
+    "rating": 4.7,
+    "isOpen": true,
+    "closesAt": "22:00",
+    "freeDeliveryThreshold": null,
+    "categories": [],
+    "products": []
+  },
+  {
+    "id": "3",
+    "name": "Burger King - Colombo",
+    "logoUrl": "https://placehold.co/80x80/FF0000/FFFFFF?text=BK",
+    "deliveryFee": 6.0,
+    "deliveryTime": "35-45 min",
+    "distance": "8.5km",
+    "minOrderValue": 18.0,
+    "rating": 4.7,
+    "isOpen": true,
+    "closesAt": "23:00",
+    "freeDeliveryThreshold": null,
+    "categories": [],
+    "products": []
+  },
+  {
+    "id": "4",
+    "name": "McDonald's - Novo Centro",
+    "logoUrl": "https://placehold.co/80x80/FFD700/000000?text=Mc",
+    "deliveryFee": 0.0,
+    "deliveryTime": "25-35 min",
+    "distance": "2.8km",
+    "minOrderValue": 15.0,
+    "rating": 4.7,
+    "isOpen": true,
+    "closesAt": "21:30",
+    "freeDeliveryThreshold": 40.0,
+    "categories": [],
+    "products": []
+  }
+]
