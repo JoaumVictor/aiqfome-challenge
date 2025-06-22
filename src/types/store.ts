@@ -1,5 +1,3 @@
-// src/types/store.ts
-
 export interface OptionItem {
   id: string;
   name: string;
