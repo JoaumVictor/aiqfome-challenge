@@ -1,0 +1,11 @@
+iniciei o projeto no create next app já passando as flags de typescript, import alias, eslint e afins
+
+adicionei o tailwhind config me baseando no design do figma
+
+criei a pasta de componentes me baseando na separação por layout, shared e ui
+
+importei todos os icones do figma e criei um componente pra puxar todos dinamicamente
+
+criei um mock das lojas e produtos pra me servir num json
+
+criei a tela inicial do aplicativo, criei o header, o main component mostrando todas as lojas e o footer
