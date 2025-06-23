@@ -12,7 +12,7 @@ const Header: React.FC<HeaderProps> = ({ location }: HeaderProps) => {
   const { searchTerm, setSearchTerm } = useStores();
 
   return (
-    <header className="flex items-center justify-between w-full p-[16px] text-white bg-purple-500 shadow-lg z-50 h-[128px] flex-col mb-[1px]">
+    <header className="flex items-center justify-between w-full p-[16px] text-white bg-purple-500 shadow-lg z-50 max-h-[128px] flex-col mb-[1px] gap-[16px]">
       <div className="flex items-center justify-between w-full">
         <Link href="/">
           <Icon name="aiqfome" className="text-white" />
