@@ -13,7 +13,7 @@ export default function HomePage() {
 
   return (
     <>
-      <Header />
+      <Header location="/" />
       <Banner src="/assets/banners/hero-banner.png" alt="hero banner" />
       <Container className="p-[16px]">
         <main className="flex flex-col gap-[8px]">

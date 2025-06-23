@@ -19,7 +19,7 @@ const StoreDetailsHeader: React.FC<StoreDetailsHeaderProps> = ({ store }) => {
     .replace(".", ",")}`;
 
   return (
-    <div className="flex flex-col items-start justify-start w-full py-[24px] px-[16px] gap-[8px] border border-red-400">
+    <div className="flex flex-col items-start justify-start w-full py-[24px] px-[16px] gap-[8px]">
       <div className="flex items-center justify-start h-[36px] gap-[8px]  w-full">
         <Image
           src={store.logoUrl}

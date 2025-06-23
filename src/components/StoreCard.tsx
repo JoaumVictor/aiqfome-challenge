@@ -2,8 +2,8 @@
 
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
 import Icon, { IconName } from "@/components/ui/Icon";
+import { useRouter } from "next/navigation";
 import { Store } from "@/types/store";
 
 interface StoreCardProps {
@@ -11,6 +11,8 @@ interface StoreCardProps {
 }
 
 const StoreCard: React.FC<StoreCardProps> = ({ store }) => {
+  const router = useRouter();
+
   const deliveryFeeText =
     store.deliveryFee === 0
       ? "Grátis"
@@ -18,10 +20,18 @@ const StoreCard: React.FC<StoreCardProps> = ({ store }) => {
   const deliveryIconName: IconName =
     store.deliveryFee === 0 ? "scotter" : "delivery";
 
+  const handleClick = () => {
+    if (store.isOpen) {
+      router.push(`/stores/${store.id}`);
+    }
+  };
+
   return (
-    <Link
-      href={`/stores/${store.id}`}
-      className="bg-neutral-50 hover:bg-neutral-100 rounded-lg overflow-hidden flex items-center w-full min-h-[72px]"
+    <div
+      onClick={handleClick}
+      className={`bg-neutral-50 hover:bg-neutral-100 rounded-lg overflow-hidden flex items-center w-full min-h-[72px] ${
+        store.isOpen && "cursor-pointer"
+      }`}
     >
       <Image
         src={store.logoUrl}
@@ -53,7 +63,7 @@ const StoreCard: React.FC<StoreCardProps> = ({ store }) => {
           </div>
         </div>
       </div>
-    </Link>
+    </div>
   );
 };
 

@@ -1,24 +1,16 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { notFound } from "next/navigation";
+import { notFound, useParams } from "next/navigation";
 import Header from "@/components/layout/Header";
-import Container from "@/components/layout/Container";
 import { getStoreById } from "@/lib/api";
-import Icon from "@/components/ui/Icon";
-import Image from "next/image";
 import Footer from "@/components/layout/Footer";
 import { Store } from "@/types/store";
 import StoreDetailsHeader from "@/components/StoreDetailsHeader";
+import StoreDetailsHeaderSkeleton from "./../../../components/skeletons/StoreDetailsHeaderSkeleton";
 
-interface StorePageProps {
-  params: {
-    storeId: string;
-  };
-}
-
-export default function StorePage({ params }: StorePageProps) {
-  const { storeId } = params;
+export default function StorePage() {
+  const { storeId } = useParams<{ storeId: string }>();
   const [store, setStore] = useState<Store>();
   const [loading, setLoading] = useState(true);
 
@@ -45,11 +37,17 @@ export default function StorePage({ params }: StorePageProps) {
   return (
     <>
       <Header />
+      {(loading || !store) && (
+        <main className="flex flex-col items-center justify-start min-h-screen">
+          <StoreDetailsHeaderSkeleton />
+        </main>
+      )}
       {!loading && store && (
         <main className="flex flex-col items-center justify-start min-h-screen">
           <StoreDetailsHeader store={store} />
         </main>
       )}
+
       <Footer />
     </>
   );
