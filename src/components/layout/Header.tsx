@@ -1,12 +1,15 @@
 import React from "react";
 import Icon from "../ui/Icon";
 import Input from "../ui/Input";
+import { useStores } from "@/hooks/useStores";
 
 interface HeaderProps {
   location?: string;
 }
 
 const Header: React.FC<HeaderProps> = () => {
+  const { searchTerm, setSearchTerm } = useStores();
+
   return (
     <header className="flex items-center justify-between w-full p-[16px] text-white bg-purple-500 shadow-lg z-50 h-[128px] flex-col mb-[1px]">
       <div className="flex items-center justify-between w-full">
@@ -31,7 +34,11 @@ const Header: React.FC<HeaderProps> = () => {
         <Icon name="person" height={24} width={24} className="text-white" />
       </div>
       <div className="w-full">
-        <Input placeholder="busque pela loja ou culinária" />
+        <Input
+          value={searchTerm}
+          onChange={setSearchTerm}
+          placeholder="busque pela loja ou culinária"
+        />
       </div>
     </header>
   );

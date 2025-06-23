@@ -1,3 +1,4 @@
+// src/contexts/StoreContext.tsx
 "use client";
 
 import React, {
@@ -6,6 +7,7 @@ import React, {
   useState,
   useEffect,
   ReactNode,
+  useCallback,
 } from "react";
 import { Store } from "@/types/store";
 import { getAllStores } from "@/lib/api";
@@ -14,6 +16,9 @@ interface StoreContextType {
   stores: Store[];
   loading: boolean;
   error: string | null;
+  searchTerm: string;
+  setSearchTerm: (term: string) => void;
+  filteredStores: Store[];
 }
 
 const StoreContext = createContext<StoreContextType | undefined>(undefined);
@@ -23,9 +28,10 @@ interface StoreProviderProps {
 }
 
 export const StoreProvider: React.FC<StoreProviderProps> = ({ children }) => {
-  const [stores, setStores] = useState<Store[]>([]);
+  const [allStores, setAllStores] = useState<Store[]>([]); // Armazena todas as lojas sem filtro
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const [searchTerm, setSearchTerm] = useState<string>("");
 
   useEffect(() => {
     const fetchStores = async () => {
@@ -33,7 +39,7 @@ export const StoreProvider: React.FC<StoreProviderProps> = ({ children }) => {
         setLoading(true);
         setError(null);
         const data = await getAllStores();
-        setStores(data);
+        setAllStores(data);
       } catch (err) {
         setError("Falha ao carregar as lojas. Por favor, tente novamente.");
         console.error("Erro ao buscar lojas:", err);
@@ -45,8 +51,31 @@ export const StoreProvider: React.FC<StoreProviderProps> = ({ children }) => {
     fetchStores();
   }, []);
 
+  const filteredStores = useCallback(() => {
+    if (!searchTerm) {
+      return allStores;
+    }
+    const lowerCaseSearchTerm = searchTerm.toLowerCase();
+    return allStores.filter(
+      (store) =>
+        store.name.toLowerCase().includes(lowerCaseSearchTerm) ||
+        store.categories.some((category) =>
+          category.name.toLowerCase().includes(lowerCaseSearchTerm)
+        )
+    );
+  }, [allStores, searchTerm]);
+
   return (
-    <StoreContext.Provider value={{ stores, loading, error }}>
+    <StoreContext.Provider
+      value={{
+        stores: allStores,
+        filteredStores: filteredStores(),
+        loading,
+        error,
+        searchTerm,
+        setSearchTerm,
+      }}
+    >
       {children}
     </StoreContext.Provider>
   );

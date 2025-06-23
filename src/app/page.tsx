@@ -6,9 +6,10 @@ import Container from "@/components/layout/Container";
 import Banner from "@/components/shared/Banner";
 import { useStores } from "@/hooks/useStores";
 import StoreCard from "@/components/StoreCard";
+import StoreCardSkeleton from "@/components/skeletons/StoreCardSkeleton";
 
 export default function HomePage() {
-  const { stores, loading } = useStores();
+  const { stores, loading, filteredStores, error } = useStores();
 
   useEffect(() => {
     console.log(stores);
@@ -24,9 +25,30 @@ export default function HomePage() {
             abertos
           </h1>
           <div className="flex flex-col gap-[16px] justify-center items-center">
+            {loading && (
+              <>
+                <StoreCardSkeleton />
+                <StoreCardSkeleton />
+                <StoreCardSkeleton />
+                <StoreCardSkeleton />
+                <StoreCardSkeleton />
+              </>
+            )}
+
+            {error && <p className="text-error text-center p-4">{error}</p>}
+
+            {!loading && !error && filteredStores.length === 0 && (
+              <p className="text-gray-500 text-center p-4">
+                Nenhuma loja encontrada com esse filtro.
+              </p>
+            )}
+
             {!loading &&
-              stores.length !== 0 &&
-              stores.map((store) => <StoreCard key={store.id} store={store} />)}
+              !error &&
+              filteredStores.length > 0 &&
+              filteredStores.map((store) => (
+                <StoreCard key={store.id} store={store} />
+              ))}
           </div>
         </main>
       </Container>
