@@ -6,6 +6,7 @@ import Banner from "@/components/shared/Banner";
 import { useStores } from "@/hooks/useStores";
 import StoreCard from "@/components/StoreCard";
 import StoreCardSkeleton from "@/components/skeletons/StoreCardSkeleton";
+import Footer from "@/components/layout/Footer";
 
 export default function HomePage() {
   const { loading, filteredStores, error } = useStores();
@@ -80,6 +81,7 @@ export default function HomePage() {
           </section>
         </main>
       </Container>
+      <Footer />
     </>
   );
 }
