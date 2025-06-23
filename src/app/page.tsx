@@ -7,7 +7,7 @@ export default function HomePage() {
       <Header />
       <main>
         <Container>
-          <h1 className="text-2xl text-primary font-bold text-gray-900 mb-4">
+          <h1 className="text-2xl font-bold bg-primary text-gray-900 mb-4">
             Lojas Abertas
           </h1>
           <div className="flex flex-col space-y-4">
