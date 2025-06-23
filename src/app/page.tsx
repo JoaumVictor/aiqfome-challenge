@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect } from "react";
 import Header from "@/components/layout/Header";
 import Container from "@/components/layout/Container";
 import Banner from "@/components/shared/Banner";
@@ -9,47 +8,76 @@ import StoreCard from "@/components/StoreCard";
 import StoreCardSkeleton from "@/components/skeletons/StoreCardSkeleton";
 
 export default function HomePage() {
-  const { stores, loading, filteredStores, error } = useStores();
-
-  useEffect(() => {
-    console.log(stores);
-  }, [stores]);
+  const { loading, filteredStores, error } = useStores();
 
   return (
     <>
       <Header />
       <Banner src="/assets/banners/hero-banner.png" alt="hero banner" />
       <Container className="p-[16px]">
-        <main className="min-h-[calc(50vh)]">
-          <h1 className="text-xl font-extrabold my-[8px] text-purple-500">
-            abertos
-          </h1>
-          <div className="flex flex-col gap-[16px] justify-center items-center">
-            {loading && (
-              <>
-                <StoreCardSkeleton />
-                <StoreCardSkeleton />
-                <StoreCardSkeleton />
-                <StoreCardSkeleton />
-                <StoreCardSkeleton />
-              </>
-            )}
+        <main className="flex flex-col gap-[8px]">
+          <section className="min-h-[calc(20vh)] mb-2">
+            <h1 className="text-xl font-extrabold my-[8px] text-purple-500">
+              abertos
+            </h1>
+            <div className="flex flex-col gap-[16px] justify-center items-center">
+              {loading && (
+                <>
+                  <StoreCardSkeleton />
+                  <StoreCardSkeleton />
+                  <StoreCardSkeleton />
+                  <StoreCardSkeleton />
+                  <StoreCardSkeleton />
+                </>
+              )}
 
-            {error && <p className="text-error text-center p-4">{error}</p>}
+              {error && <p className="text-error text-center p-4">{error}</p>}
 
-            {!loading && !error && filteredStores.length === 0 && (
-              <p className="text-gray-500 text-center p-4">
-                Nenhuma loja encontrada com esse filtro.
-              </p>
-            )}
+              {!loading && !error && filteredStores.length === 0 && (
+                <p className="text-gray-500 text-center p-4">
+                  Nenhuma loja encontrada com esse filtro.
+                </p>
+              )}
 
-            {!loading &&
-              !error &&
-              filteredStores.length > 0 &&
-              filteredStores.map((store) => (
-                <StoreCard key={store.id} store={store} />
-              ))}
-          </div>
+              {!loading &&
+                !error &&
+                filteredStores.length > 0 &&
+                filteredStores
+                  .filter((store) => store.isOpen)
+                  .map((store) => <StoreCard key={store.id} store={store} />)}
+            </div>
+          </section>
+          <section className="mt-[8px] min-h-[calc(20vh)]">
+            <h1 className="text-xl font-extrabold my-[8px] text-purple-500">
+              fechados
+            </h1>
+            <div className="flex flex-col gap-[16px] justify-center items-center">
+              {loading && (
+                <>
+                  <StoreCardSkeleton />
+                  <StoreCardSkeleton />
+                  <StoreCardSkeleton />
+                  <StoreCardSkeleton />
+                  <StoreCardSkeleton />
+                </>
+              )}
+
+              {error && <p className="text-error text-center p-4">{error}</p>}
+
+              {!loading && !error && filteredStores.length === 0 && (
+                <p className="text-gray-500 text-center p-4">
+                  Nenhuma loja encontrada com esse filtro.
+                </p>
+              )}
+
+              {!loading &&
+                !error &&
+                filteredStores.length > 0 &&
+                filteredStores
+                  .filter((store) => !store.isOpen)
+                  .map((store) => <StoreCard key={store.id} store={store} />)}
+            </div>
+          </section>
         </main>
       </Container>
     </>
