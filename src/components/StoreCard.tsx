@@ -21,14 +21,16 @@ const StoreCard: React.FC<StoreCardProps> = ({ store }) => {
   return (
     <Link
       href={`/stores/${store.id}`}
-      className="bg-neutral-50 rounded-lg overflow-hidden flex items-center w-full min-h-[72px]"
+      className="bg-neutral-50 hover:bg-neutral-100 rounded-lg overflow-hidden flex items-center w-full min-h-[72px]"
     >
       <Image
         src={store.logoUrl}
         alt={`${store.name} Logo`}
         width={74}
         height={74}
-        className="rounded-l-lg object-cover flex-shrink-0"
+        className={`rounded-l-lg object-cover flex-shrink-0 ${
+          store.isOpen ? "" : "opacity-50"
+        }`}
       />
       <div className=" p-[12px] w-full">
         <h1 className="text-neutral-700 font-bold">{store.name}</h1>
