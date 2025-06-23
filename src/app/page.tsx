@@ -1,10 +1,12 @@
 import Header from "@/components/layout/Header";
 import Container from "@/components/layout/Container";
+import Banner from "@/components/shared/Banner";
 
 export default function HomePage() {
   return (
     <>
       <Header />
+      <Banner src="/assets/banners/hero-banner.png" alt="hero banner" />
       <main>
         <Container>
           <h1 className="text-2xl font-bold bg-primary text-gray-900 mb-4">

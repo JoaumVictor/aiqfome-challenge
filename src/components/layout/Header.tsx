@@ -8,7 +8,7 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = () => {
   return (
-    <header className="flex items-center justify-between w-full p-[16px] text-white bg-purple-500 shadow-lg z-50 h-[128px] flex-col">
+    <header className="flex items-center justify-between w-full p-[16px] text-white bg-purple-500 shadow-lg z-50 h-[128px] flex-col mb-1">
       <div className="flex items-center justify-between w-full">
         <Icon name="aiqfome" className="text-white" />
         <div className="flex items-center  justify-center w-[70%] gap-2">
