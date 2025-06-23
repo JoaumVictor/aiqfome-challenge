@@ -15,7 +15,10 @@
   --color-neutrals-100: #f0f1f5;
   --color-neutrals-500: #6d6f73;
   --color-neutrals-700: #393a3c;
+  --color-neutrals-900: #202326;
 
+  --color-teal-50: #f2fafa;
+  --color-teal-400: #00a296;
   --color-teal-600: #027a7a;
 
   --color-gray-50: #fafafa;
@@ -31,7 +34,7 @@
 
   --color-white: #ffffff;
   --color-black: #000000;
-  --color-success: #4caf50;
+  --color-success: #02a117;
   --color-error: #f44336;
   --color-warning: #ffeb3b;
   --color-info: #2196f3;
