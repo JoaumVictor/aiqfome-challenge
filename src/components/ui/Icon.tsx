@@ -2,7 +2,7 @@
 import Image from "next/image";
 import React from "react";
 
-type IconName =
+export type IconName =
   | "aiqfome"
   | "location"
   | "money"
@@ -20,7 +20,8 @@ type IconName =
   | "store-4"
   | "ticket-icon-leaf"
   | "ticket-icon-pepper"
-  | "trash";
+  | "trash"
+  | "delivery";
 
 type Props = {
   name: IconName;

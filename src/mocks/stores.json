@@ -2,7 +2,7 @@
   {
     "id": "1",
     "name": "Matsuri Concept",
-    "logoUrl": "https://placehold.co/80x80/FF7043/FFFFFF?text=Matsuri",
+    "logoUrl": "/assets/icons/store-1.svg",
     "deliveryFee": 0,
     "deliveryTime": "30-40 min",
     "distance": "5.2km",
@@ -177,7 +177,7 @@
   {
     "id": "2",
     "name": "Subway - Avenida Center",
-    "logoUrl": "https://placehold.co/80x80/008000/FFFFFF?text=Subway",
+    "logoUrl": "/assets/icons/store-2.svg",
     "deliveryFee": 6.0,
     "deliveryTime": "45-55 min",
     "distance": "3.1km",
@@ -192,7 +192,7 @@
   {
     "id": "3",
     "name": "Burger King - Colombo",
-    "logoUrl": "https://placehold.co/80x80/FF0000/FFFFFF?text=BK",
+    "logoUrl": "/assets/icons/store-3.svg",
     "deliveryFee": 6.0,
     "deliveryTime": "35-45 min",
     "distance": "8.5km",
@@ -207,7 +207,7 @@
   {
     "id": "4",
     "name": "McDonald's - Novo Centro",
-    "logoUrl": "https://placehold.co/80x80/FFD700/000000?text=Mc",
+    "logoUrl": "/assets/icons/store-4.svg",
     "deliveryFee": 0.0,
     "deliveryTime": "25-35 min",
     "distance": "2.8km",
