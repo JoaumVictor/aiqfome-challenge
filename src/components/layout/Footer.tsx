@@ -1,16 +1,17 @@
 import { useCart } from "@/hooks/useCart";
 import React from "react";
+import Button from "../ui/Button";
+import { useRouter } from "next/navigation";
 
 const Footer: React.FC = () => {
-  const { cartItemCount, cartItems } = useCart();
-
-  console.log(cartItemCount, cartItems);
+  const { cartItemCount } = useCart();
+  const router = useRouter();
 
   return (
-    <footer className="w-full px-[16px] py-[24px] text-center bg-neutral-100 text-purple-700">
+    <footer className="w-full px-[24px] py-[24px] text-center bg-neutral-100 text-purple-700 space-y-[16px]">
       <p className="text-sm">feito com 💜 em maringá-PR</p>
       {cartItemCount > 0 ? (
-        <button></button>
+        <Button onClick={() => router.push("/cart")}>ver ticket</Button>
       ) : (
         <>
           <p className="text-[16px] mt-1">

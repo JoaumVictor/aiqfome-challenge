@@ -18,7 +18,7 @@ export default function ProductCard({
       onClick={() =>
         router.push(`/stores/${storeId}/item/${product.id}?type=ADD-ITEM`)
       }
-      className="bg-white cursor-pointer hover:bg-neutral-100 transition flex"
+      className="bg-white cursor-pointer transition flex"
     >
       <div className="flex flex-col justify-between items-start w-8/12">
         <h3 className="text-base font-semibold text-neutral-900">

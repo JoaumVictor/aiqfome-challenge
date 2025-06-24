@@ -41,7 +41,7 @@ export default function MultipleOptionGroup({
               <span
                 className={`w-5 h-5 rounded border-2 ${
                   selectedItem
-                    ? "border-purple-600 bg-purple-600"
+                    ? "border-purple-600 bg-purple-700"
                     : "border-neutral-300"
                 }`}
               />

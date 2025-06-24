@@ -29,6 +29,7 @@ export default function ProductDetailPage() {
   const [selectedOptions, setSelectedOptions] = useState<Record<string, any>>(
     {}
   );
+  const [details, setDetails] = useState("");
 
   const { cartItems, clearCart, addItemToCart, updateCartItem } =
     useCartContext();
@@ -243,19 +244,23 @@ export default function ProductDetailPage() {
             className="w-full max-h-[195px] object-cover"
           />
           <main className="pb-4 flex flex-col items-center justify-center gap-2 w-full">
-            <div className="px-2 text-center flex flex-col items-start justify-center gap-2 py-4 w-full">
-              <h1 className="text-xl font-bold text-neutral-700">
-                {product.name}
-              </h1>
+            <div className="text-center flex flex-col items-start justify-center gap-[16px] p-4 w-full">
+              <div className="flex flex-col justify-start items-start gap-[6px]  w-full">
+                <h1 className="text-xl font-bold text-neutral-700">
+                  {product.name}
+                </h1>
 
-              <p className="font-extrabold text-sm">
-                a partir de
-                <span className="mt-2 text-purple-500 font-extrabold text-lg">
-                  {` R$ ${product.basePrice.toFixed(2).replace(".", ",")}`}
-                </span>
-              </p>
+                <p className="font-extrabold text-sm">
+                  a partir de
+                  <span className="mt-2 text-purple-500 font-extrabold text-lg">
+                    {` R$ ${product.basePrice.toFixed(2).replace(".", ",")}`}
+                  </span>
+                </p>
 
-              <p className="text-neutral-500">{product.description}</p>
+                <p className="text-neutral-500 text-start text-sm">
+                  {product.description}
+                </p>
+              </div>
 
               <div className="flex items-center justify-between gap-2 w-full">
                 <div className="w-1/3 flex items-start justify-center flex-col">
@@ -339,6 +344,15 @@ export default function ProductDetailPage() {
                 </OptionGroupWrapper>
               );
             })}
+            <div className="w-full py-[24px] px-[16px] bg-white">
+              <textarea
+                name="details"
+                onChange={(e) => setDetails(e.target.value)}
+                value={details}
+                placeholder={`${`alguma observação do item? • opcional \n ex: tirar algum ingrediente, ponto do prato`}`}
+                className="w-full min-h-[58px] placeholder:text-neutral-500 placeholder:font-semibold p-4 border border-neutral-500 placeholder:text-sm resize-none"
+              ></textarea>
+            </div>
           </main>
         </Container>
       </section>
