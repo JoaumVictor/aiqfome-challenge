@@ -6,7 +6,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import Container from "@/components/layout/Container";
 import { getStoreById } from "@/lib/api";
-import { Product, Store } from "@/types/store";
+import { Product, ProductOption, Store } from "@/types/store";
 import StoreDetailsHeaderSkeleton from "@/components/skeletons/StoreDetailsHeaderSkeleton";
 import { useCartContext } from "@/contexts/CartContext";
 import OptionGroupWrapper from "@/components/productOptions/OptionGroupWrapper";
@@ -211,18 +211,18 @@ export default function ProductDetailPage() {
       };
     });
 
-    if (mode === "EDIT-ITEM") {
-      const existingItem = cartItems.find((item) => item.productId === itemId);
-      if (existingItem) {
-        updateCartItem(existingItem.id, quantity, formattedOptions);
-        alert("Item atualizado no carrinho!");
-        window.history.back();
-      }
-    } else {
-      addItemToCart(store.id, product, quantity, formattedOptions);
-      alert("Item adicionado ao carrinho!");
-      window.history.back();
-    }
+    // if (mode === "EDIT-ITEM") {
+    //   const existingItem = cartItems.find((item) => item.productId === itemId);
+    //   if (existingItem) {
+    //     updateCartItem(existingItem.id, quantity, formattedOptions);
+    //     alert("Item atualizado no carrinho!");
+    //     window.history.back();
+    //   }
+    // } else {
+    //   addItemToCart(store.id, product, quantity, formattedOptions);
+    //   alert("Item adicionado ao carrinho!");
+    //   window.history.back();
+    // }
   };
 
   if (loading || !product || !store) {
@@ -281,12 +281,30 @@ export default function ProductDetailPage() {
           </div>
 
           {product.options.map((option) => {
-            const description =
-              option.type === "multiple"
-                ? "escolha quantos quiser"
-                : option.maxSelections === 1
-                ? `escolha 1`
-                : `escolha até ${option.maxSelections}`;
+            const description = (() => {
+              const min = option.minSelections ?? 0;
+              const max = option.maxSelections ?? Infinity;
+
+              if (option.type === "multiple") {
+                if (max === Infinity && min === 0)
+                  return "escolha quantos quiser";
+                if (min === max) return `escolha ${max}`;
+                if (max !== Infinity) return `escolha até ${max}`;
+                return `escolha pelo menos ${min}`;
+              }
+
+              if (option.type === "single") {
+                return "escolha 1";
+              }
+
+              if (option.type === "counter") {
+                if (min === max) return `escolha ${max} itens`;
+                if (max !== Infinity) return `escolha até ${max} itens`;
+                return `escolha pelo menos ${min} itens`;
+              }
+
+              return "";
+            })();
 
             return (
               <OptionGroupWrapper
