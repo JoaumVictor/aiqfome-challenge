@@ -24,7 +24,9 @@ export type IconName =
   | "ticket-icon-leaf"
   | "ticket-icon-pepper"
   | "trash"
-  | "delivery";
+  | "delivery"
+  | "minus"
+  | "plus";
 
 type Props = {
   name: IconName;

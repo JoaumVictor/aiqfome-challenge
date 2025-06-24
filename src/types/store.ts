@@ -6,7 +6,8 @@ export interface OptionItem {
 }
 
 export interface ProductOption {
-  type: "single" | "multiple";
+  id: string;
+  type: "single" | "multiple" | "counter";
   title: string;
   minSelections: number;
   maxSelections: number;

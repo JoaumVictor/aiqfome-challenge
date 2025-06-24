@@ -13,11 +13,11 @@ export default function ProductCard({
 }) {
   const router = useRouter();
 
-  // console.log(product);
-
   return (
     <div
-      onClick={() => router.push(`/stores/${storeId}/item/${product.id}`)}
+      onClick={() =>
+        router.push(`/stores/${storeId}/item/${product.id}?type=ADD-ITEM`)
+      }
       className="bg-white cursor-pointer hover:bg-neutral-100 transition flex"
     >
       <div className="flex flex-col justify-between items-start w-8/12">

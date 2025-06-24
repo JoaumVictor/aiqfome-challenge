@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { StoreProvider } from "@/contexts/StoreContext";
+import { CartProvider } from "@/contexts/CartContext";
 
 export const metadata: Metadata = {
   title: "Aiqfome Challenge",
@@ -16,7 +17,9 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body className={`font-sans antialiased`}>
-        <StoreProvider>{children}</StoreProvider>
+        <StoreProvider>
+          <CartProvider>{children}</CartProvider>
+        </StoreProvider>
       </body>
     </html>
   );

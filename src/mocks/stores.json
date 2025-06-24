@@ -49,6 +49,7 @@
         "reviews": 4.5,
         "options": [
           {
+            "id": "optGroup1",
             "type": "single",
             "title": "Qual o tamanho?",
             "minSelections": 1,
@@ -61,44 +62,91 @@
                 "price": 0.0,
                 "originalPrice": 22.9
               },
-              { "id": "opt1_2", "name": "Grande", "price": 28.9 }
+              {
+                "id": "opt1_2",
+                "name": "Grande",
+                "price": 28.9
+              }
             ]
           },
           {
+            "id": "optGroup2",
             "type": "multiple",
             "title": "Acompanhamentos",
             "minSelections": 0,
             "maxSelections": 2,
             "required": false,
             "items": [
-              { "id": "opt2_1", "name": "Shoyu", "price": 0.0 },
-              { "id": "opt2_2", "name": "Gengibre", "price": 0.0 },
-              { "id": "opt2_3", "name": "Wasabi", "price": 0.0 },
-              { "id": "opt2_4", "name": "Sem acompanhamentos", "price": 0.0 }
+              {
+                "id": "opt2_1",
+                "name": "Shoyu",
+                "price": 0.0
+              },
+              {
+                "id": "opt2_2",
+                "name": "Gengibre",
+                "price": 0.0
+              },
+              {
+                "id": "opt2_3",
+                "name": "Wasabi",
+                "price": 0.0
+              },
+              {
+                "id": "opt2_4",
+                "name": "Sem acompanhamentos",
+                "price": 0.0
+              }
             ]
           },
           {
-            "type": "multiple",
+            "id": "optGroup3",
+            "type": "counter",
             "title": "Vai querer bebida?",
             "minSelections": 0,
             "maxSelections": 5,
             "required": false,
             "items": [
-              { "id": "opt3_1", "name": "Coca-cola", "price": 5.0 },
-              { "id": "opt3_2", "name": "Fanta Laranja", "price": 5.0 },
-              { "id": "opt3_3", "name": "Guaraná Antártica", "price": 5.0 },
-              { "id": "opt3_4", "name": "Suco Prats Laranja", "price": 6.0 },
-              { "id": "opt3_5", "name": "Água sem Gás", "price": 3.0 }
+              {
+                "id": "opt3_1",
+                "name": "Coca-cola",
+                "price": 5.0
+              },
+              {
+                "id": "opt3_2",
+                "name": "Fanta Laranja",
+                "price": 5.0
+              },
+              {
+                "id": "opt3_3",
+                "name": "Guaraná Antártica",
+                "price": 5.0
+              },
+              {
+                "id": "opt3_4",
+                "name": "Suco Prats Laranja",
+                "price": 6.0
+              },
+              {
+                "id": "opt3_5",
+                "name": "Água sem Gás",
+                "price": 3.0
+              }
             ]
           },
           {
+            "id": "optGroup4",
             "type": "single",
             "title": "Precisa de talher?",
             "minSelections": 1,
             "maxSelections": 1,
             "required": false,
             "items": [
-              { "id": "opt4_1", "name": "Hashi", "price": 0.0 },
+              {
+                "id": "opt4_1",
+                "name": "Hashi",
+                "price": 0.0
+              },
               {
                 "id": "opt4_2",
                 "name": "Garfo e faca descartável",
@@ -107,15 +155,28 @@
             ]
           },
           {
+            "id": "optGroup5",
             "type": "multiple",
             "title": "Mais alguma coisa?",
             "minSelections": 0,
             "maxSelections": 2,
             "required": false,
             "items": [
-              { "id": "opt5_1", "name": "Biscoito da sorte", "price": 2.0 },
-              { "id": "opt5_2", "name": "Rolinho primavera", "price": 8.0 },
-              { "id": "opt5_3", "name": "Guioza", "price": 6.0 }
+              {
+                "id": "opt5_1",
+                "name": "Biscoito da sorte",
+                "price": 2.0
+              },
+              {
+                "id": "opt5_2",
+                "name": "Rolinho primavera",
+                "price": 8.0
+              },
+              {
+                "id": "opt5_3",
+                "name": "Guioza",
+                "price": 6.0
+              }
             ]
           }
         ]
