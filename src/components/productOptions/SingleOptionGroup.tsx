@@ -40,10 +40,12 @@ export default function SingleOptionGroup({
                 +R$ {item.price.toFixed(2).replace(".", ",")}
               </span>
             </p>
-          ) : (
+          ) : item.price ? (
             <span className="text-purple-500 text-sm font-bold">
               +R$ {item.price.toFixed(2).replace(".", ",")}
             </span>
+          ) : (
+            <></>
           )}
         </li>
       ))}
