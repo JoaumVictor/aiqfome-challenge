@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { notFound, useParams, useSearchParams } from "next/navigation";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -47,8 +47,6 @@ export default function ProductDetailPage() {
         const foundProduct = fetchedStore.products.find((p) => p.id === itemId);
         if (!foundProduct) return notFound();
 
-        console.log(foundProduct);
-
         const hasOtherStoreItems = cartItems.some(
           (item) => item.storeId !== storeId
         );
@@ -66,27 +64,6 @@ export default function ProductDetailPage() {
 
         setStore(fetchedStore);
         setProduct(foundProduct);
-
-        // EDIT MODE: load existing options
-        // if (mode === "EDIT-ITEM") {
-        //   const cartItem = cartItems.find((item) => item.productId === itemId);
-        //   if (cartItem) {
-        //     setQuantity(cartItem.quantity);
-        //     const opt: Record<string, any> = {};
-        //     cartItem.selectedOptions.forEach((group: any) => {
-        //       if (group.type === "single") {
-        //         opt[group.id] = group.items[0].id;
-        //       } else if (group.type === "multiple") {
-        //         opt[group.id] = group.items.map((item: any) => item.id);
-        //       } else if (group.type === "counter") {
-        //         opt[group.id] = Object.fromEntries(
-        //           group.items.map((item: any) => [item.id, item.quantity])
-        //         );
-        //       }
-        //     });
-        //     setSelectedOptions(opt);
-        //   }
-        // }
       } catch (error) {
         console.error("Erro ao carregar produto:", error);
         notFound();
@@ -97,8 +74,6 @@ export default function ProductDetailPage() {
 
     fetchData();
   }, [storeId, itemId, cartItems, clearCart, mode]);
-
-  const totalPrice = "19,99";
 
   const handleSelect = (groupId: string, itemId: string) => {
     setSelectedOptions((prev) => ({ ...prev, [groupId]: itemId }));
@@ -129,6 +104,64 @@ export default function ProductDetailPage() {
       };
     });
   };
+
+  const isFormValid = useMemo(() => {
+    if (!product) return false;
+
+    return product.options.every((option) => {
+      if (!option.required) return true;
+
+      const selected = selectedOptions[option.id];
+      if (option.type === "single") {
+        return Boolean(selected);
+      }
+
+      if (option.type === "multiple") {
+        return selected?.length >= option.minSelections;
+      }
+
+      if (option.type === "counter") {
+        const total = Object.values(selected || {}).reduce(
+          (acc: number, val: number) => acc + val,
+          0
+        );
+        return total >= option.minSelections;
+      }
+
+      return true;
+    });
+  }, [product, selectedOptions]);
+
+  const totalPrice = useMemo(() => {
+    if (!product) return 0;
+
+    let total = 0;
+
+    product.options.forEach((group) => {
+      const selected = selectedOptions[group.id];
+
+      if (group.type === "single") {
+        const item = group.items.find((i) => i.id === selected);
+        if (item) total += item.price;
+      }
+
+      if (group.type === "multiple") {
+        const selectedItems = group.items.filter((i) =>
+          selected?.includes(i.id)
+        );
+        selectedItems.forEach((item) => (total += item.price));
+      }
+
+      if (group.type === "counter") {
+        Object.entries(selected || {}).forEach(([itemId, count]) => {
+          const item = group.items.find((i) => i.id === itemId);
+          if (item) total += item.price * count;
+        });
+      }
+    });
+
+    return total * quantity;
+  }, [product, selectedOptions, quantity]);
 
   const handleSubmit = () => {
     if (!product || !store) return;
@@ -178,22 +211,18 @@ export default function ProductDetailPage() {
       };
     });
 
-    console.log(store.id, product, quantity, formattedOptions);
-
-    // if (mode === "EDIT-ITEM") {
-    //   const existingItem = cartItems.find((item) => item.productId === itemId);
-    //   if (existingItem) {
-    //     updateCartItem(existingItem.id, quantity, formattedOptions);
-    //     alert("Item atualizado no carrinho!");
-    //     window.history.back();
-    //   }
-    // }
-
-    // if (mode === "ADD-ITEM") {
-    //   addItemToCart(store.id, product, quantity, formattedOptions);
-    //   alert("Item adicionado ao carrinho!");
-    //   window.history.back();
-    // }
+    if (mode === "EDIT-ITEM") {
+      const existingItem = cartItems.find((item) => item.productId === itemId);
+      if (existingItem) {
+        updateCartItem(existingItem.id, quantity, formattedOptions);
+        alert("Item atualizado no carrinho!");
+        window.history.back();
+      }
+    } else {
+      addItemToCart(store.id, product, quantity, formattedOptions);
+      alert("Item adicionado ao carrinho!");
+      window.history.back();
+    }
   };
 
   if (loading || !product || !store) {
@@ -212,15 +241,15 @@ export default function ProductDetailPage() {
           className="w-full max-h-[195px] object-cover"
         />
         <main className="pb-4 flex flex-col items-center justify-center gap-2 w-full">
-          <div className="mx-2 text-center flex flex-col items-start justify-center gap-2 py-4">
+          <div className="px-2 text-center flex flex-col items-start justify-center gap-2 py-4 w-full">
             <h1 className="text-xl font-bold text-neutral-700">
               {product.name}
             </h1>
 
             <p className="font-extrabold text-sm">
-              a partir de{" "}
+              a partir de
               <span className="mt-2 text-purple-500 font-extrabold text-lg">
-                R$ {product.basePrice.toFixed(2).replace(".", ",")}
+                {` R$ ${product.basePrice.toFixed(2).replace(".", ",")}`}
               </span>
             </p>
 
@@ -230,13 +259,20 @@ export default function ProductDetailPage() {
               <div className="w-1/3 flex items-start justify-center flex-col">
                 <p className="font-bold">quantos?</p>
                 <p>
-                  total <span className="font-bold">{`R$ ${totalPrice}`}</span>
+                  total
+                  <span className="font-bold">
+                    {` R$ ${totalPrice.toFixed(2).replace(".", ",")}`}
+                  </span>
                 </p>
               </div>
 
               <button
-                className="h-[40px] w-[108px] bg-neutral-500 text-white rounded-[8px] text-sm py-[11px] px-[24px]"
-                // onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                className={`h-[40px] w-[108px] rounded-[8px] text-sm py-[11px] px-[24px] text-white ${
+                  isFormValid
+                    ? "bg-purple-600"
+                    : "bg-neutral-400 cursor-not-allowed"
+                }`}
+                disabled={!isFormValid}
                 onClick={handleSubmit}
               >
                 adicionar
