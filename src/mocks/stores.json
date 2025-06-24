@@ -44,7 +44,7 @@
         "categoryId": "cat2",
         "name": "Ceviche de Salmão",
         "description": "Salmão temperado com limão, cebola e pimenta",
-        "imageUrl": "https://placehold.co/150x150/FF7043/FFFFFF?text=Ceviche",
+        "imageUrl": "/assets/imgs/fish-mock.png",
         "basePrice": 19.9,
         "reviews": 4.5,
         "options": [

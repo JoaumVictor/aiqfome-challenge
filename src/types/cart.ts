@@ -5,8 +5,9 @@ export interface SelectedOptionItem {
 }
 
 export interface SelectedProductOption {
-  optionGroupId: string; // ID do grupo de opções (ex: ID de "Qual o tamanho?")
+  id: string; // ID do grupo de opções (ex: ID de "Qual o tamanho?")
   title: string; // Título do grupo (ex: "Qual o tamanho?")
+  type: string;
   items: SelectedOptionItem[]; // Itens selecionados dentro desse grupo
 }
 

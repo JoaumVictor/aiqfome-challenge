@@ -13,7 +13,7 @@ const Banner: React.FC<Props> = ({ src, alt, className }: Props) => {
       alt={alt}
       width={1920}
       height={600}
-      className={`w-full h-auto object-cover ${className}`}
+      className={`w-full h-auto object-cover mt-[1px] ${className}`}
       priority
     />
   );
