@@ -40,8 +40,8 @@ export default function CounterOptionGroup({
               >
                 <Icon
                   name="minus"
-                  width={20}
-                  height={20}
+                  width={28}
+                  height={28}
                   className="text-purple-500"
                 />
               </button>
@@ -53,8 +53,8 @@ export default function CounterOptionGroup({
               >
                 <Icon
                   name="plus"
-                  width={20}
-                  height={20}
+                  width={28}
+                  height={28}
                   className="text-purple-500"
                 />
               </button>

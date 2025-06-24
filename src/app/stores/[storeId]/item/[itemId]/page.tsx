@@ -6,14 +6,14 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import Container from "@/components/layout/Container";
 import { getStoreById } from "@/lib/api";
-import { Product, ProductOption, Store } from "@/types/store";
+import { Product, Store } from "@/types/store";
 import StoreDetailsHeaderSkeleton from "@/components/skeletons/StoreDetailsHeaderSkeleton";
 import { useCartContext } from "@/contexts/CartContext";
-import OptionGroupWrapper from "@/components/productOptions/OptionGroupWrapper";
 import SingleOptionGroup from "@/components/productOptions/SingleOptionGroup";
 import MultipleOptionGroup from "@/components/productOptions/MultipleOptionGroup";
 import CounterOptionGroup from "@/components/productOptions/CounterOptionGroup";
 import Image from "next/image";
+import OptionGroupWrapper from "@/components/productOptions/optionGroupWrapper";
 
 export default function ProductDetailPage() {
   const { storeId, itemId } = useParams<{ storeId: string; itemId: string }>();
@@ -211,18 +211,21 @@ export default function ProductDetailPage() {
       };
     });
 
-    // if (mode === "EDIT-ITEM") {
-    //   const existingItem = cartItems.find((item) => item.productId === itemId);
-    //   if (existingItem) {
-    //     updateCartItem(existingItem.id, quantity, formattedOptions);
-    //     alert("Item atualizado no carrinho!");
-    //     window.history.back();
-    //   }
-    // } else {
-    //   addItemToCart(store.id, product, quantity, formattedOptions);
-    //   alert("Item adicionado ao carrinho!");
-    //   window.history.back();
-    // }
+    if (mode === "EDIT-ITEM") {
+      const existingItem = cartItems.find((item) => item.productId === itemId);
+      if (existingItem) {
+        updateCartItem(existingItem.id, quantity, formattedOptions);
+        alert("Item atualizado no carrinho!");
+        // window.history.back();
+      }
+    } else {
+      // addItemToCart(store.id, product, quantity, formattedOptions);
+      console.log(selectedOptions);
+
+      console.log(store.id, product, quantity, formattedOptions);
+      // alert("Item adicionado ao carrinho!");
+      // window.history.back();
+    }
   };
 
   if (loading || !product || !store) {

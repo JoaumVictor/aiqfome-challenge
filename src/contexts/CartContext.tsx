@@ -42,6 +42,7 @@ interface CartProviderProps {
 export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
+  // Load from localStorage
   useEffect(() => {
     try {
       const storedCart = localStorage.getItem("aiqfome_cart");
@@ -49,32 +50,43 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
         setCartItems(JSON.parse(storedCart));
       }
     } catch (error) {
-      console.error("Falha ao carregar carrinho do localStorage:", error);
+      console.error("Erro ao carregar carrinho:", error);
       localStorage.removeItem("aiqfome_cart");
     }
   }, []);
 
+  // Save to localStorage
   useEffect(() => {
     try {
       localStorage.setItem("aiqfome_cart", JSON.stringify(cartItems));
     } catch (error) {
-      console.error("Falha ao salvar carrinho no localStorage:", error);
+      console.error("Erro ao salvar carrinho:", error);
     }
   }, [cartItems]);
+
+  const calculateOptionTotal = (selectedOptions: SelectedProductOption[]) => {
+    return selectedOptions.reduce((sum, group) => {
+      return (
+        sum +
+        group.items.reduce((acc, item) => {
+          const qty = item.quantity ?? 1;
+          return acc + item.price * qty;
+        }, 0)
+      );
+    }, 0);
+  };
 
   const calculateItemTotalPrice = useCallback(
     (
       product: Product,
       quantity: number,
       selectedOptions: SelectedProductOption[]
-    ): number => {
-      let price = product.basePrice;
-      selectedOptions.forEach((optionGroup) => {
-        optionGroup.items.forEach((item) => {
-          price += item.price;
-        });
-      });
-      return price * quantity;
+    ): { optionTotal: number; unitPrice: number; itemTotal: number } => {
+      const basePrice = product.basePrice;
+      const optionTotal = calculateOptionTotal(selectedOptions);
+      const unitPrice = basePrice + optionTotal;
+      const itemTotal = unitPrice * quantity;
+      return { optionTotal, unitPrice, itemTotal };
     },
     []
   );
@@ -86,7 +98,7 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
       quantity: number,
       selectedOptions: SelectedProductOption[]
     ) => {
-      const itemTotalPrice = calculateItemTotalPrice(
+      const { optionTotal, unitPrice, itemTotal } = calculateItemTotalPrice(
         product,
         quantity,
         selectedOptions
@@ -101,10 +113,12 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
         basePrice: product.basePrice,
         selectedOptions,
         quantity,
-        itemTotalPrice,
+        unitPrice,
+        optionTotalPrice: optionTotal,
+        itemTotalPrice: itemTotal,
       };
 
-      setCartItems((prevItems) => [...prevItems, newItem]);
+      setCartItems((prev) => [...prev, newItem]);
     },
     [calculateItemTotalPrice]
   );
@@ -115,30 +129,27 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
       newQuantity: number,
       newSelectedOptions: SelectedProductOption[]
     ) => {
-      setCartItems((prevItems) =>
-        prevItems.map((item) => {
+      setCartItems((prev) =>
+        prev.map((item) => {
           if (item.id === cartItemId) {
-            const productBase = {
+            const mockProduct = {
               basePrice: item.basePrice,
-              id: item.productId,
-              name: item.productName,
-              categoryId: "",
-              description: "",
-              imageUrl: "",
-              reviews: 0,
-              options: [],
             } as Product;
-            const updatedItemTotalPrice = calculateItemTotalPrice(
-              productBase,
-              newQuantity,
-              newSelectedOptions
-            );
+
+            const { optionTotal, unitPrice, itemTotal } =
+              calculateItemTotalPrice(
+                mockProduct,
+                newQuantity,
+                newSelectedOptions
+              );
 
             return {
               ...item,
               quantity: newQuantity,
               selectedOptions: newSelectedOptions,
-              itemTotalPrice: updatedItemTotalPrice,
+              optionTotalPrice: optionTotal,
+              unitPrice,
+              itemTotalPrice: itemTotal,
             };
           }
           return item;
@@ -149,9 +160,7 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
   );
 
   const removeCartItem = useCallback((cartItemId: string) => {
-    setCartItems((prevItems) =>
-      prevItems.filter((item) => item.id !== cartItemId)
-    );
+    setCartItems((prev) => prev.filter((item) => item.id !== cartItemId));
   }, []);
 
   const clearCart = useCallback(() => {
@@ -169,6 +178,7 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
     (total, item) => total + item.itemTotalPrice,
     0
   );
+
   const cartItemCount = cartItems.reduce(
     (count, item) => count + item.quantity,
     0
