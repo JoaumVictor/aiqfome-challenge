@@ -13,9 +13,11 @@ import SingleOptionGroup from "@/components/productOptions/SingleOptionGroup";
 import MultipleOptionGroup from "@/components/productOptions/MultipleOptionGroup";
 import CounterOptionGroup from "@/components/productOptions/CounterOptionGroup";
 import Image from "next/image";
-import OptionGroupWrapper from "@/components/productOptions/optionGroupWrapper";
+import OptionGroupWrapper from "@/components/productOptions/OptionGroupWrapper";
+import { useRouter } from "next/navigation";
 
 export default function ProductDetailPage() {
+  const router = useRouter();
   const { storeId, itemId } = useParams<{ storeId: string; itemId: string }>();
   const searchParams = useSearchParams();
   const mode = searchParams.get("type");
@@ -160,8 +162,8 @@ export default function ProductDetailPage() {
       }
     });
 
-    return total * quantity;
-  }, [product, selectedOptions, quantity]);
+    return total;
+  }, [product, selectedOptions]);
 
   const handleSubmit = () => {
     if (!product || !store) return;
@@ -216,16 +218,12 @@ export default function ProductDetailPage() {
       if (existingItem) {
         updateCartItem(existingItem.id, quantity, formattedOptions);
         alert("Item atualizado no carrinho!");
-        // window.history.back();
       }
     } else {
-      // addItemToCart(store.id, product, quantity, formattedOptions);
-      console.log(selectedOptions);
-
-      console.log(store.id, product, quantity, formattedOptions);
-      // alert("Item adicionado ao carrinho!");
-      // window.history.back();
+      addItemToCart(store.id, product, 1, formattedOptions);
+      alert("Item adicionado ao carrinho!");
     }
+    router.push(`/stores/${store.id}`);
   };
 
   if (loading || !product || !store) {
@@ -233,116 +231,119 @@ export default function ProductDetailPage() {
   }
 
   return (
-    <>
-      <Header />
-      <Container className="w-full">
-        <Image
-          src={product.imageUrl}
-          width={355}
-          height={195}
-          alt="foot alternative text"
-          className="w-full max-h-[195px] object-cover"
-        />
-        <main className="pb-4 flex flex-col items-center justify-center gap-2 w-full">
-          <div className="px-2 text-center flex flex-col items-start justify-center gap-2 py-4 w-full">
-            <h1 className="text-xl font-bold text-neutral-700">
-              {product.name}
-            </h1>
+    <div className="min-h-screen flex flex-col justify-between bg-neutral-100 w-full">
+      <section className="flex-col flex justify-start items-center w-full">
+        <Header />
+        <Container className="w-full">
+          <Image
+            src={product.imageUrl}
+            width={355}
+            height={195}
+            alt="foot alternative text"
+            className="w-full max-h-[195px] object-cover"
+          />
+          <main className="pb-4 flex flex-col items-center justify-center gap-2 w-full">
+            <div className="px-2 text-center flex flex-col items-start justify-center gap-2 py-4 w-full">
+              <h1 className="text-xl font-bold text-neutral-700">
+                {product.name}
+              </h1>
 
-            <p className="font-extrabold text-sm">
-              a partir de
-              <span className="mt-2 text-purple-500 font-extrabold text-lg">
-                {` R$ ${product.basePrice.toFixed(2).replace(".", ",")}`}
-              </span>
-            </p>
+              <p className="font-extrabold text-sm">
+                a partir de
+                <span className="mt-2 text-purple-500 font-extrabold text-lg">
+                  {` R$ ${product.basePrice.toFixed(2).replace(".", ",")}`}
+                </span>
+              </p>
 
-            <p className="text-neutral-500">{product.description}</p>
+              <p className="text-neutral-500">{product.description}</p>
 
-            <div className="flex items-center justify-between gap-2 w-full">
-              <div className="w-1/3 flex items-start justify-center flex-col">
-                <p className="font-bold">quantos?</p>
-                <p>
-                  total
-                  <span className="font-bold">
-                    {` R$ ${totalPrice.toFixed(2).replace(".", ",")}`}
-                  </span>
-                </p>
+              <div className="flex items-center justify-between gap-2 w-full">
+                <div className="w-1/3 flex items-start justify-center flex-col">
+                  <p className="font-bold">quantos?</p>
+                  <p>
+                    total
+                    <span className="font-bold">
+                      {` R$ ${totalPrice.toFixed(2).replace(".", ",")}`}
+                    </span>
+                  </p>
+                </div>
+
+                <button
+                  className={`h-[40px] w-[108px] rounded-[8px] text-sm py-[11px] px-[24px] text-white ${
+                    isFormValid
+                      ? "bg-purple-600"
+                      : "bg-neutral-400 cursor-not-allowed"
+                  }`}
+                  disabled={!isFormValid}
+                  onClick={handleSubmit}
+                >
+                  adicionar
+                </button>
               </div>
-
-              <button
-                className={`h-[40px] w-[108px] rounded-[8px] text-sm py-[11px] px-[24px] text-white ${
-                  isFormValid
-                    ? "bg-purple-600"
-                    : "bg-neutral-400 cursor-not-allowed"
-                }`}
-                disabled={!isFormValid}
-                onClick={handleSubmit}
-              >
-                adicionar
-              </button>
             </div>
-          </div>
 
-          {product.options.map((option) => {
-            const description = (() => {
-              const min = option.minSelections ?? 0;
-              const max = option.maxSelections ?? Infinity;
+            {product.options.map((option) => {
+              const description = (() => {
+                const min = option.minSelections ?? 0;
+                const max = option.maxSelections ?? Infinity;
 
-              if (option.type === "multiple") {
-                if (max === Infinity && min === 0)
-                  return "escolha quantos quiser";
-                if (min === max) return `escolha ${max}`;
-                if (max !== Infinity) return `escolha até ${max}`;
-                return `escolha pelo menos ${min}`;
-              }
+                if (option.type === "multiple") {
+                  if (max === Infinity && min === 0)
+                    return "escolha quantos quiser";
+                  if (min === max) return `escolha ${max}`;
+                  if (max !== Infinity) return `escolha até ${max}`;
+                  return `escolha pelo menos ${min}`;
+                }
 
-              if (option.type === "single") {
-                return "escolha 1";
-              }
+                if (option.type === "single") {
+                  return "escolha 1";
+                }
 
-              if (option.type === "counter") {
-                if (min === max) return `escolha ${max} itens`;
-                if (max !== Infinity) return `escolha até ${max} itens`;
-                return `escolha pelo menos ${min} itens`;
-              }
+                if (option.type === "counter") {
+                  if (min === max) return `escolha ${max} itens`;
+                  if (max !== Infinity) return `escolha até ${max} itens`;
+                  return `escolha pelo menos ${min} itens`;
+                }
 
-              return "";
-            })();
+                return "";
+              })();
 
-            return (
-              <OptionGroupWrapper
-                key={option.id}
-                title={option.title}
-                description={description}
-                required={option.required}
-              >
-                {option.type === "single" && (
-                  <SingleOptionGroup
-                    option={option}
-                    selected={selectedOptions[option.id] || ""}
-                    onChange={handleSelect}
-                  />
-                )}
-                {option.type === "multiple" && (
-                  <MultipleOptionGroup
-                    option={option}
-                    selected={selectedOptions[option.id] || []}
-                    onChange={handleToggle}
-                  />
-                )}
-                {option.type === "counter" && (
-                  <CounterOptionGroup
-                    option={option}
-                    selectedCount={selectedOptions[option.id] || {}}
-                    onChange={handleCounter}
-                  />
-                )}
-              </OptionGroupWrapper>
-            );
-          })}
-        </main>
-      </Container>
+              return (
+                <OptionGroupWrapper
+                  key={option.id}
+                  title={option.title}
+                  description={description}
+                  required={option.required}
+                >
+                  {option.type === "single" && (
+                    <SingleOptionGroup
+                      option={option}
+                      selected={selectedOptions[option.id] || ""}
+                      onChange={handleSelect}
+                    />
+                  )}
+                  {option.type === "multiple" && (
+                    <MultipleOptionGroup
+                      option={option}
+                      selected={selectedOptions[option.id] || []}
+                      onChange={handleToggle}
+                    />
+                  )}
+                  {option.type === "counter" && (
+                    <CounterOptionGroup
+                      option={option}
+                      selectedCount={selectedOptions[option.id] || {}}
+                      onChange={handleCounter}
+                    />
+                  )}
+                </OptionGroupWrapper>
+              );
+            })}
+          </main>
+        </Container>
+      </section>
+
       <Footer />
-    </>
+    </div>
   );
 }

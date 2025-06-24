@@ -82,9 +82,8 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
       quantity: number,
       selectedOptions: SelectedProductOption[]
     ): { optionTotal: number; unitPrice: number; itemTotal: number } => {
-      const basePrice = product.basePrice;
       const optionTotal = calculateOptionTotal(selectedOptions);
-      const unitPrice = basePrice + optionTotal;
+      const unitPrice = optionTotal;
       const itemTotal = unitPrice * quantity;
       return { optionTotal, unitPrice, itemTotal };
     },

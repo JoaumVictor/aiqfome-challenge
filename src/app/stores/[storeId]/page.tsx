@@ -40,18 +40,20 @@ export default function StorePage() {
   }, [storeId]);
 
   return (
-    <div className=" bg-neutral-100 w-full">
-      <Header />
-      <Container className="pb-4">
-        {loading || !store ? (
-          <StoreDetailsHeaderSkeleton />
-        ) : (
-          <div className="w-full">
-            <StoreDetailsHeader store={store} />
-            <CategorySection store={store} />
-          </div>
-        )}
-      </Container>
+    <div className="min-h-screen flex flex-col justify-between bg-neutral-100 w-full">
+      <section className="flex-col flex justify-start items-center w-full">
+        <Header />
+        <Container className="pb-4">
+          {loading || !store ? (
+            <StoreDetailsHeaderSkeleton />
+          ) : (
+            <div className="border border-red-600">
+              <StoreDetailsHeader store={store} />
+              <CategorySection store={store} />
+            </div>
+          )}
+        </Container>
+      </section>
       <Footer />
     </div>
   );

@@ -12,7 +12,7 @@ export default function HomePage() {
   const { loading, filteredStores, error } = useStores();
 
   return (
-    <>
+    <section className="flex-col flex justify-start items-center w-full">
       <Header location="/" />
       <Banner src="/assets/banners/hero-banner.png" alt="hero banner" />
       <Container className="p-[16px]">
@@ -82,6 +82,6 @@ export default function HomePage() {
         </main>
       </Container>
       <Footer />
-    </>
+    </section>
   );
 }
