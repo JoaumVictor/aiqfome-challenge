@@ -25,7 +25,6 @@ export default function CartItemCard({
           R$ {item.itemTotalPrice.toFixed(2).replace(".", ",")}
         </span>
       </div>
-
       <div className="flex justify-end space-x-4 items-center pt-2">
         <Link
           href={`/stores/${storeId}/item/${item.productId}?type=EDIT-ITEM&cart-id=${item.id}`}
@@ -37,7 +36,6 @@ export default function CartItemCard({
             </span>
           </div>
         </Link>
-
         <div className="flex items-center gap-1.5">
           <button
             className="w-8 h-8 rounded flex items-center justify-center text-purple-500"
@@ -72,7 +70,6 @@ export default function CartItemCard({
           </button>
         </div>
       </div>
-
       <div className="text-sm text-neutral-700 space-y-[6px]">
         {item.selectedOptions.map((group) => (
           <div key={group.id}>
@@ -96,7 +93,6 @@ export default function CartItemCard({
             )}
           </div>
         ))}
-
         {item.details && (
           <p className="mt-1 bg-neutral-100 p-2 text-xs border-none rounded text-neutral-800">
             <span className="font-bold mr-1">observação:</span> {item.details}

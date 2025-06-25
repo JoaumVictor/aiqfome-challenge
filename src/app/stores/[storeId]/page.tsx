@@ -7,7 +7,7 @@ import Footer from "@/components/layout/Footer";
 import Container from "@/components/layout/Container";
 import { getStoreById } from "@/lib/api";
 import { Store } from "@/types/store";
-import StoreDetailsHeader from "@/components/StoreDetailsHeader";
+import StoreDetailsHeader from "@/components/store/StoreDetailsHeader";
 import StoreDetailsHeaderSkeleton from "@/components/skeletons/StoreDetailsHeaderSkeleton";
 import CategorySection from "@/components/store/CategorySection";
 

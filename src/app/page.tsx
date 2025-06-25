@@ -4,7 +4,7 @@ import Header from "@/components/layout/Header";
 import Container from "@/components/layout/Container";
 import Banner from "@/components/shared/Banner";
 import { useStores } from "@/hooks/useStores";
-import StoreCard from "@/components/StoreCard";
+import StoreCard from "@/components/store/StoreCard";
 import StoreCardSkeleton from "@/components/skeletons/StoreCardSkeleton";
 import Footer from "@/components/layout/Footer";
 

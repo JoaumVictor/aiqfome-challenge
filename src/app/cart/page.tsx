@@ -49,7 +49,6 @@ export default function CartPage() {
     <div className="min-h-screen flex flex-col justify-between bg-neutral-100 w-full">
       <section className="flex-col flex justify-start items-center w-full">
         <Header />
-
         <Container>
           {isCartLoading || loading || cartItems.length > 0 ? (
             <Link
@@ -67,7 +66,6 @@ export default function CartPage() {
               ) : (
                 <div className="w-9 h-8 bg-neutral-600 rounded-sm  animate-pulse" />
               )}
-
               <div className="text-neutral-500 flex flex-col w-full text-sm">
                 seus itens em
                 <span className="text-lg font-bold text-neutral-900 text-[16px]">
@@ -87,14 +85,12 @@ export default function CartPage() {
               </Button>
             </span>
           )}
-
           {(!cartItems.length || isCartLoading) && (
             <div className="flex-1 my-32 flex flex-col gap-5 items-center justify-center text-neutral-500">
               {isCartLoading ? "Carregando . . ." : "Carrinho vazio."}
               <Icon name="delivery" />
             </div>
           )}
-
           {cartItems.length > 0 && !isCartLoading && (
             <main>
               {cartItems.map((item) => (
@@ -120,14 +116,13 @@ export default function CartPage() {
               R$ {cartTotal.toFixed(2).replace(".", ",")}
             </p>
           </div>
-
           <Button
             disabled={!cartItems.length}
             className={`!w-[200px] bg-purple-500 ${
               !cartItems.length &&
               "bg-neutral-500 hover:bg-neutral-600 cursor-auto"
             }`}
-            onClick={() => handleFinish}
+            onClick={handleFinish}
           >
             ir para pagamento
           </Button>

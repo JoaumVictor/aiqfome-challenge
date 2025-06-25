@@ -19,7 +19,7 @@ const Header: React.FC<HeaderProps> = ({ location }: HeaderProps) => {
           <Link href="/">
             <Icon name="aiqfome" className="text-white" />
           </Link>
-          <div className="flex items-center  justify-center w-[70%] gap-2">
+          <div className="flex items-center  justify-center w-[70%] sm:w-auto gap-2">
             <Icon
               name="location"
               height={24}
@@ -44,7 +44,7 @@ const Header: React.FC<HeaderProps> = ({ location }: HeaderProps) => {
           <Icon name="person" height={24} width={24} className="text-white" />
         </div>
         {location && location === "/" && (
-          <div className="w-full">
+          <div className="w-full mt-[12px]">
             <Input
               value={searchTerm}
               onChange={setSearchTerm}
