@@ -1,4 +1,3 @@
-// src/components/cart/CartItemCard.tsx
 "use client";
 
 import Link from "next/link";
@@ -92,7 +91,7 @@ export default function CartItemCard({
 
         {item.details && (
           <p className="mt-1 bg-neutral-100 p-2 text-xs border-none rounded text-neutral-800">
-            <span className="font-bold">observação:</span> {item.details}
+            <span className="font-bold mr-1">observação:</span> {item.details}
           </p>
         )}
       </div>

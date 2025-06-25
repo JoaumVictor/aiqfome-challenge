@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import React, { useEffect, useMemo, useState } from "react";
@@ -67,6 +68,34 @@ export default function ProductDetailPage() {
 
         setStore(fetchedStore);
         setProduct(foundProduct);
+
+        if (mode === "EDIT-ITEM") {
+          const existingItem = cartItems.find(
+            (item) => item.productId === itemId
+          );
+          if (existingItem) {
+            setQuantity(existingItem.quantity);
+            setDetails(existingItem.details || "");
+
+            const initialSelected: Record<string, any> = {};
+            existingItem.selectedOptions.forEach((group) => {
+              if (group.type === "single") {
+                initialSelected[group.id] = group.items[0]?.id || "";
+              }
+              if (group.type === "multiple") {
+                initialSelected[group.id] = group.items.map((i) => i.id);
+              }
+              if (group.type === "counter") {
+                initialSelected[group.id] = group.items.reduce((acc, item) => {
+                  if (item.id) acc[item.id] = item.quantity ?? 0;
+                  return acc;
+                }, {} as Record<string, number>);
+              }
+            });
+
+            setSelectedOptions(initialSelected);
+          }
+        }
       } catch (error) {
         console.error("Erro ao carregar produto:", error);
         notFound();
@@ -222,11 +251,9 @@ export default function ProductDetailPage() {
       const existingItem = cartItems.find((item) => item.productId === itemId);
       if (existingItem) {
         updateCartItem(existingItem.id, quantity, formattedOptions, details);
-        alert("Item atualizado no carrinho!");
       }
     } else {
-      addItemToCart(store.id, product, 1, formattedOptions, details);
-      alert("Item adicionado ao carrinho!");
+      addItemToCart(store.id, product, quantity, formattedOptions, details);
     }
     router.push(`/cart`);
   };
