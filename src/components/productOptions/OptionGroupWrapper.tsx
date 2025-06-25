@@ -21,7 +21,7 @@ export default function OptionGroupWrapper({
           <p className="text-sm text-neutral-500">{description}</p>
         </div>
         {required && (
-          <span className="text-xs text-white bg-neutrals-700 bg-neutrals-200 rounded px-[4px] py-[6px]">
+          <span className="text-xs text-white bg-neutrals-700 bg-neutrals-200 rounded px-[8px] py-[6px]">
             obrigatório
           </span>
         )}

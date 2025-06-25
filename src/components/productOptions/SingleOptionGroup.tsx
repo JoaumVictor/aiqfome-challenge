@@ -34,8 +34,8 @@ export default function SingleOptionGroup({
           </div>
 
           {item.originalPrice ? (
-            <p className="text-neutral-500 text-xs">
-              de {item.originalPrice.toFixed(2).replace(".", ",")} por
+            <p className="text-neutral-500 text-xs font-bold">
+              de R$ {item.originalPrice.toFixed(2).replace(".", ",")} por
               <span className="text-success text-sm font-bold ml-2">
                 +R$ {item.price.toFixed(2).replace(".", ",")}
               </span>

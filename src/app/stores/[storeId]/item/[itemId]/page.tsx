@@ -16,6 +16,7 @@ import CounterOptionGroup from "@/components/productOptions/CounterOptionGroup";
 import Image from "next/image";
 import OptionGroupWrapper from "@/components/productOptions/OptionGroupWrapper";
 import { useRouter } from "next/navigation";
+import Icon from "@/components/ui/Icon";
 
 export default function ProductDetailPage() {
   const router = useRouter();
@@ -32,8 +33,13 @@ export default function ProductDetailPage() {
   );
   const [details, setDetails] = useState("");
 
-  const { cartItems, clearCart, addItemToCart, updateCartItem } =
-    useCartContext();
+  const {
+    cartItems,
+    clearCart,
+    addItemToCart,
+    updateCartItem,
+    removeCartItem,
+  } = useCartContext();
 
   useEffect(() => {
     if (mode !== "ADD-ITEM" && mode !== "EDIT-ITEM") {
@@ -306,17 +312,48 @@ export default function ProductDetailPage() {
                   </p>
                 </div>
 
-                <button
-                  className={`h-[40px] w-[108px] rounded-[8px] text-sm py-[11px] transition-all px-[24px] text-white ${
-                    isFormValid
-                      ? "bg-purple-600 cursor-pointer hover:bg-purple-700"
-                      : "bg-neutral-400 cursor-not-allowed"
-                  }`}
-                  disabled={!isFormValid}
-                  onClick={handleSubmit}
-                >
-                  adicionar
-                </button>
+                {mode === "ADD-ITEM" ? (
+                  <button
+                    className={`h-[40px] w-[108px] rounded-[8px] text-sm py-[11px] transition-all px-[24px] text-white ${
+                      isFormValid
+                        ? "bg-purple-600 cursor-pointer hover:bg-purple-700"
+                        : "bg-neutral-400 cursor-not-allowed"
+                    }`}
+                    disabled={!isFormValid}
+                    onClick={handleSubmit}
+                  >
+                    adicionar
+                  </button>
+                ) : (
+                  <div className="flex items-center gap-1.5">
+                    <button
+                      className="w-8 h-8 rounded flex items-center justify-center text-purple-500"
+                      onClick={() => {
+                        if (quantity > 1) {
+                          setQuantity(quantity - 1);
+                        } else {
+                          removeCartItem(product.id);
+                          router.push("/cart");
+                        }
+                      }}
+                    >
+                      <Icon
+                        width={quantity > 1 ? 24 : 20}
+                        height={quantity > 1 ? 24 : 20}
+                        name={quantity > 1 ? "minus-2" : "trash"}
+                      />
+                    </button>
+                    <span className="w-6 text-center text-sm font-bold">
+                      {quantity}
+                    </span>
+                    <button
+                      className="w-8 h-8  rounded flex items-center justify-center text-purple-500"
+                      onClick={() => setQuantity(quantity + 1)}
+                    >
+                      <Icon width={24} height={24} name="plus" />
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
 
