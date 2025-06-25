@@ -1,5 +1,3 @@
-// src/components/shared/StoreDetailsHeaderSkeleton.tsx
-
 import React from "react";
 
 const StoreDetailsHeaderSkeleton: React.FC = () => {

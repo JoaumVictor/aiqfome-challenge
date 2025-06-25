@@ -96,7 +96,7 @@ export default function CartItemCard({
           </div>
         ))}
         {item.details && (
-          <p className="mt-1 bg-neutral-100 p-2 text-xs border-none rounded text-neutral-800">
+          <p className="mt-1 bg-neutral-100 p-2 text-xs border-none rounded text-neutral-800 w-full break-words whitespace-pre-wrap">
             <span className="font-bold mr-1">observação:</span> {item.details}
           </p>
         )}

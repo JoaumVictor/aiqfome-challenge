@@ -43,9 +43,15 @@ export default function ProductCard({
         className="bg-white cursor-pointer transition flex"
       >
         <div className="flex flex-col justify-between items-start w-8/12">
-          <h3 className="text-base font-semibold text-neutral-900">
-            {product.name}
-          </h3>
+          <div className="flex items-center justify-center gap-1">
+            <h3 className="text-base font-semibold text-neutral-900">
+              {product.name}
+            </h3>
+            {product.tags &&
+              product.tags?.map((tag) => (
+                <Icon key={tag} name={tag} width={14} height={14} />
+              ))}
+          </div>
           <p className="text-sm text-gray-500 mt-0.5">{product.description}</p>
         </div>
 

@@ -1,4 +1,3 @@
-// src/components/Icon.tsx
 import Image from "next/image";
 import React from "react";
 
@@ -21,8 +20,8 @@ export type IconName =
   | "store-2"
   | "store-3"
   | "store-4"
-  | "ticket-icon-leaf"
-  | "ticket-icon-pepper"
+  | "detox"
+  | "hot"
   | "trash"
   | "delivery"
   | "minus"

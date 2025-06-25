@@ -26,6 +26,7 @@ export interface Product {
   reviews: number;
   options: ProductOption[];
   isVariablePrice?: boolean;
+  tags?: ("hot" | "detox")[];
 }
 
 export interface Category {

@@ -1,5 +1,3 @@
-// src/components/shared/StoreDetailsHeader.tsx
-
 import React from "react";
 import Image from "next/image";
 import Icon from "@/components/ui/Icon";

@@ -190,6 +190,7 @@
         "id": "prod2",
         "categoryId": "cat3",
         "name": "Temaki Filadélfia",
+        "tags": ["hot"],
         "description": "Arroz, salmão fresco, cream cheese e cebolinha",
         "imageUrl": "/assets/imgs/fish-mock.png",
         "basePrice": 13.99,
@@ -216,7 +217,8 @@
         "basePrice": 13.99,
         "isVariablePrice": true,
         "reviews": 4.6,
-        "options": []
+        "options": [],
+        "tags": ["detox"]
       },
       {
         "id": "prod5",
@@ -226,7 +228,8 @@
         "imageUrl": "/assets/imgs/fish-mock.png",
         "basePrice": 13.99,
         "reviews": 4.1,
-        "options": []
+        "options": [],
+        "tags": ["hot"]
       },
       {
         "id": "prod6",
@@ -245,8 +248,10 @@
         "description": "Arroz e fatia de salmão fresco",
         "imageUrl": "/assets/imgs/fish-mock.png",
         "basePrice": 8.5,
+        "originalPrice": 10.5,
         "reviews": 4.7,
-        "options": []
+        "options": [],
+        "tags": ["detox"]
       },
       {
         "id": "prod8",
@@ -256,7 +261,8 @@
         "imageUrl": "/assets/imgs/fish-mock.png",
         "basePrice": 9.0,
         "reviews": 4.6,
-        "options": []
+        "options": [],
+        "tags": ["detox"]
       },
       {
         "id": "prod9",
@@ -321,7 +327,8 @@
         "name": "Subway Frango Defumado com Cream Cheese",
         "description": "Frango defumado com cream cheese, no pão de sua escolha",
         "imageUrl": "/assets/imgs/fish-mock.png",
-        "basePrice": 22.9,
+        "basePrice": 19.9,
+        "originalPrice": 22.9,
         "reviews": 4.5,
         "options": [
           {
@@ -661,6 +668,7 @@
         "description": "Big Mac + McFritas Média + Refrigerante",
         "imageUrl": "/assets/imgs/fish-mock.png",
         "basePrice": 40.0,
+        "originalPrice": 44.0,
         "reviews": 4.8,
         "options": [
           {
@@ -674,7 +682,8 @@
               {
                 "id": "optBK5_1_1",
                 "name": "Big Mac + McFritas Média",
-                "price": 40.0
+                "price": 40.0,
+                "originalPrice": 44.0
               }
             ]
           },
@@ -706,5 +715,65 @@
         ]
       }
     ]
+  },
+  {
+    "id": "5",
+    "name": "Matsuri - Comércio",
+    "logoUrl": "/assets/icons/store-1.svg",
+    "deliveryFee": 0,
+    "deliveryTime": "30-40 min",
+    "distance": "5.2km",
+    "minOrderValue": 15.0,
+    "rating": 4.7,
+    "isOpen": false,
+    "closesAt": "20:00",
+    "freeDeliveryThreshold": 35.0,
+    "categories": [],
+    "products": []
+  },
+  {
+    "id": "6",
+    "name": "Subway - Pajuçara",
+    "logoUrl": "/assets/icons/store-2.svg",
+    "deliveryFee": 6.0,
+    "deliveryTime": "45-55 min",
+    "distance": "3.1km",
+    "minOrderValue": 20.0,
+    "rating": 4.7,
+    "isOpen": false,
+    "closesAt": "22:00",
+    "freeDeliveryThreshold": null,
+    "categories": [],
+    "products": []
+  },
+  {
+    "id": "7",
+    "name": "Burger King - Centro",
+    "logoUrl": "/assets/icons/store-3.svg",
+    "deliveryFee": 6.0,
+    "deliveryTime": "35-45 min",
+    "distance": "8.5km",
+    "minOrderValue": 18.0,
+    "rating": 4.7,
+    "isOpen": false,
+    "closesAt": "23:00",
+    "freeDeliveryThreshold": null,
+    "categories": [],
+    "products": []
+  },
+  {
+    "id": "8",
+    "name": "McDonald's - Pátio Maceió",
+    "logoUrl": "/assets/icons/store-4.svg",
+    "deliveryFee": 0.0,
+    "deliveryTime": "25-35 min",
+    "distance": "2.8km",
+    "minOrderValue": 15.0,
+    "rating": 4.7,
+    "isOpen": false,
+    "closesAt": "21:30",
+    "freeDeliveryThreshold": 40.0,
+    "categories": [],
+    "products": []
   }
 ]

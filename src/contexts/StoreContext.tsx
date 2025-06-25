@@ -1,4 +1,3 @@
-// src/contexts/StoreContext.tsx
 "use client";
 
 import React, {
@@ -28,7 +27,7 @@ interface StoreProviderProps {
 }
 
 export const StoreProvider: React.FC<StoreProviderProps> = ({ children }) => {
-  const [allStores, setAllStores] = useState<Store[]>([]); // Armazena todas as lojas sem filtro
+  const [allStores, setAllStores] = useState<Store[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState<string>("");

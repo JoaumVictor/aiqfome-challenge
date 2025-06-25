@@ -1,4 +1,3 @@
-// src/components/cart/ConfirmClearCartModal.tsx
 "use client";
 
 import {

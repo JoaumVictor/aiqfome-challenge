@@ -1,5 +1,3 @@
-// src/components/shared/StoreCard.tsx
-
 import React from "react";
 import Image from "next/image";
 import Icon, { IconName } from "@/components/ui/Icon";

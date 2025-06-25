@@ -13,7 +13,6 @@ export default function CounterOptionGroup({
   selectedCount = {},
   onChange,
 }: Props) {
-  // Soma total de itens selecionados
   const totalSelected = Object.values(selectedCount).reduce(
     (sum, count) => sum + count,
     0

@@ -1,4 +1,3 @@
-// src/contexts/CartContext.tsx
 "use client";
 
 import React, {
@@ -46,7 +45,6 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [isCartLoading, setIsCartLoading] = useState(true);
 
-  // Load from localStorage
   useEffect(() => {
     try {
       console.log("get local storage");
