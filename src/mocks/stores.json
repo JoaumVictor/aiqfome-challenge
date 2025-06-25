@@ -528,9 +528,25 @@
         "imageUrl": "/assets/imgs/fish-mock.png",
         "basePrice": 42.9,
         "reviews": 4.8,
+
         "options": [
           {
             "id": "optBK5_1",
+            "type": "single",
+            "title": "Escolha seu lanche",
+            "minSelections": 1,
+            "maxSelections": 1,
+            "required": true,
+            "items": [
+              {
+                "id": "optBK5_1_1",
+                "name": "Whopper + Batata Média",
+                "price": 42.9
+              }
+            ]
+          },
+          {
+            "id": "optBK5_2",
             "type": "single",
             "title": "Escolha seu refrigerante",
             "minSelections": 1,
@@ -538,17 +554,17 @@
             "required": true,
             "items": [
               {
-                "id": "optBK5_1_1",
+                "id": "optBK5_2_1",
                 "name": "Coca-cola",
                 "price": 0.0
               },
               {
-                "id": "optBK5_1_2",
+                "id": "optBK5_2_2",
                 "name": "Guaraná",
                 "price": 0.0
               },
               {
-                "id": "optBK5_1_3",
+                "id": "optBK5_2_3",
                 "name": "Sprite",
                 "price": 0.0
               }
@@ -647,6 +663,21 @@
         "basePrice": 40.0,
         "reviews": 4.8,
         "options": [
+          {
+            "id": "optMC5_1_5",
+            "type": "single",
+            "title": "Escolha seu parapapápááá",
+            "minSelections": 1,
+            "maxSelections": 1,
+            "required": true,
+            "items": [
+              {
+                "id": "optBK5_1_1",
+                "name": "Big Mac + McFritas Média",
+                "price": 40.0
+              }
+            ]
+          },
           {
             "id": "optMC5_1",
             "type": "single",
