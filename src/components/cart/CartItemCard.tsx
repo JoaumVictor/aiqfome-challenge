@@ -20,7 +20,9 @@ export default function CartItemCard({
   return (
     <div className="bg-white p-4 flex flex-col gap-1.5 mb-2">
       <div className="flex items-center justify-between">
-        <h2 className="font-bold text-neutral-900">{item.productName}</h2>
+        <h2 className="font-bold text-neutral-900 max-w-8/12">
+          {item.productName}
+        </h2>
         <span className="font-bold text-purple-500">
           R$ {item.itemTotalPrice.toFixed(2).replace(".", ",")}
         </span>

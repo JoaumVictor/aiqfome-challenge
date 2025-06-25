@@ -29,7 +29,7 @@ export default function CategorySection({ store }: { store: Store }) {
           key={category.id}
           className="mb-[4px] px-[16px] py-[13px] bg-white"
         >
-          <AccordionTrigger className="[&>svg]:h-6 [&>svg]:w-7 flex justify-between items-center text-left hover:no-underline">
+          <AccordionTrigger className="cursor-pointer [&>svg]:h-6 [&>svg]:w-7 flex justify-between items-center text-left hover:no-underline">
             <div className="flex flex-col items-start justify-center">
               <span className="flex items-center justify-center gap-2">
                 <span className="text-lg font-bold text-neutral-900">

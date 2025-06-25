@@ -36,6 +36,11 @@
         "id": "cat5",
         "name": "Sobremesas",
         "description": ""
+      },
+      {
+        "id": "cat6",
+        "name": "Sashimis",
+        "description": "Fatias finas de peixe fresco"
       }
     ],
     "products": [
@@ -232,6 +237,46 @@
         "basePrice": 10.0,
         "reviews": 4.8,
         "options": []
+      },
+      {
+        "id": "prod7",
+        "categoryId": "cat1",
+        "name": "Niguiri de Salmão",
+        "description": "Arroz e fatia de salmão fresco",
+        "imageUrl": "/assets/imgs/fish-mock.png",
+        "basePrice": 8.5,
+        "reviews": 4.7,
+        "options": []
+      },
+      {
+        "id": "prod8",
+        "categoryId": "cat1",
+        "name": "Niguiri de Atum",
+        "description": "Arroz e fatia de atum fresco",
+        "imageUrl": "/assets/imgs/fish-mock.png",
+        "basePrice": 9.0,
+        "reviews": 4.6,
+        "options": []
+      },
+      {
+        "id": "prod9",
+        "categoryId": "cat5",
+        "name": "Tempurá de Sorvete",
+        "description": "Sorvete empanado e frito, com calda de chocolate",
+        "imageUrl": "/assets/imgs/fish-mock.png",
+        "basePrice": 15.0,
+        "reviews": 4.9,
+        "options": []
+      },
+      {
+        "id": "prod10",
+        "categoryId": "cat6",
+        "name": "Sashimi Salmão (6 fatias)",
+        "description": "6 fatias de salmão fresco",
+        "imageUrl": "/assets/imgs/fish-mock.png",
+        "basePrice": 25.0,
+        "reviews": 4.8,
+        "options": []
       }
     ]
   },
@@ -247,8 +292,152 @@
     "isOpen": true,
     "closesAt": "22:00",
     "freeDeliveryThreshold": null,
-    "categories": [],
-    "products": []
+    "categories": [
+      {
+        "id": "catS1",
+        "name": "Sanduíches",
+        "description": "Escolha seu pão, recheio, queijo e vegetais!"
+      },
+      {
+        "id": "catS2",
+        "name": "Saladas",
+        "description": "Sua salada personalizada!"
+      },
+      {
+        "id": "catS3",
+        "name": "Acompanhamentos",
+        "description": "Cookies, batatas e mais!"
+      },
+      {
+        "id": "catS4",
+        "name": "Bebidas",
+        "description": ""
+      }
+    ],
+    "products": [
+      {
+        "id": "prodS1",
+        "categoryId": "catS1",
+        "name": "Subway Frango Defumado com Cream Cheese",
+        "description": "Frango defumado com cream cheese, no pão de sua escolha",
+        "imageUrl": "/assets/imgs/fish-mock.png",
+        "basePrice": 22.9,
+        "reviews": 4.5,
+        "options": [
+          {
+            "id": "optS1_1",
+            "type": "single",
+            "title": "Escolha seu pão",
+            "minSelections": 1,
+            "maxSelections": 1,
+            "required": true,
+            "items": [
+              {
+                "id": "optS1_1_1",
+                "name": "Pão 15cm",
+                "price": 19.9,
+                "originalPrice": 22.9
+              },
+              {
+                "id": "optS1_1_2",
+                "name": "Pão 30cm",
+                "price": 32.0
+              }
+            ]
+          },
+          {
+            "id": "optS1_2",
+            "type": "multiple",
+            "title": "Queijo",
+            "minSelections": 0,
+            "maxSelections": 1,
+            "required": false,
+            "items": [
+              {
+                "id": "optS1_2_1",
+                "name": "Mussarela",
+                "price": 0.0
+              },
+              {
+                "id": "optS1_2_2",
+                "name": "Prato",
+                "price": 0.0
+              }
+            ]
+          },
+          {
+            "id": "optS1_3",
+            "type": "multiple",
+            "title": "Vegetais",
+            "minSelections": 0,
+            "maxSelections": 5,
+            "required": false,
+            "items": [
+              {
+                "id": "optS1_3_1",
+                "name": "Alface",
+                "price": 0.0
+              },
+              {
+                "id": "optS1_3_2",
+                "name": "Tomate",
+                "price": 0.0
+              },
+              {
+                "id": "optS1_3_3",
+                "name": "Cebola",
+                "price": 0.0
+              },
+              {
+                "id": "optS1_3_4",
+                "name": "Pepino",
+                "price": 0.0
+              },
+              {
+                "id": "optS1_3_5",
+                "name": "Pimentão",
+                "price": 0.0
+              },
+              {
+                "id": "optS1_3_6",
+                "name": "Azeitona",
+                "price": 0.0
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "prodS2",
+        "categoryId": "catS1",
+        "name": "Subway Carne Defumada",
+        "description": "Carne defumada com molho barbecue",
+        "imageUrl": "/assets/imgs/fish-mock.png",
+        "basePrice": 24.9,
+        "reviews": 4.6,
+        "options": []
+      },
+      {
+        "id": "prodS3",
+        "categoryId": "catS3",
+        "name": "Cookie de Chocolate com Gotas",
+        "description": "Delicioso cookie crocante por fora e macio por dentro",
+        "imageUrl": "/assets/imgs/fish-mock.png",
+        "basePrice": 5.0,
+        "reviews": 4.8,
+        "options": []
+      },
+      {
+        "id": "prodS4",
+        "categoryId": "catS4",
+        "name": "Refrigerante 500ml",
+        "description": "Coca-Cola, Fanta, Guaraná",
+        "imageUrl": "/assets/imgs/fish-mock.png",
+        "basePrice": 7.0,
+        "reviews": 4.7,
+        "options": []
+      }
+    ]
   },
   {
     "id": "3",
@@ -262,8 +451,112 @@
     "isOpen": true,
     "closesAt": "23:00",
     "freeDeliveryThreshold": null,
-    "categories": [],
-    "products": []
+    "categories": [
+      {
+        "id": "catBK1",
+        "name": "Hambúrgueres",
+        "description": "Os melhores hambúrgueres grelhados no fogo!"
+      },
+      {
+        "id": "catBK2",
+        "name": "Combos",
+        "description": "Lanche + Batata + Bebida"
+      },
+      {
+        "id": "catBK3",
+        "name": "Batatas e Acompanhamentos",
+        "description": "Batatas fritas, anéis de cebola e mais!"
+      },
+      {
+        "id": "catBK4",
+        "name": "Sobremesas",
+        "description": "Sorvetes e milkshakes!"
+      },
+      {
+        "id": "catBK5",
+        "name": "Bebidas",
+        "description": ""
+      }
+    ],
+    "products": [
+      {
+        "id": "prodBK1",
+        "categoryId": "catBK1",
+        "name": "Whopper",
+        "description": "Hambúrguer de carne grelhada, tomate, alface, maionese, picles, cebola e pão com gergelim",
+        "imageUrl": "/assets/imgs/fish-mock.png",
+        "basePrice": 28.9,
+        "originalPrice": 32.9,
+        "reviews": 4.9,
+        "options": []
+      },
+      {
+        "id": "prodBK2",
+        "categoryId": "catBK1",
+        "name": "Chicken Sandwich",
+        "description": "Frango crocante, alface, tomate e maionese no pão",
+        "imageUrl": "/assets/imgs/fish-mock.png",
+        "basePrice": 24.5,
+        "reviews": 4.6,
+        "options": []
+      },
+      {
+        "id": "prodBK3",
+        "categoryId": "catBK3",
+        "name": "Batata Frita Grande",
+        "description": "Batata frita crocante",
+        "imageUrl": "/assets/imgs/fish-mock.png",
+        "basePrice": 10.0,
+        "reviews": 4.7,
+        "options": []
+      },
+      {
+        "id": "prodBK4",
+        "categoryId": "catBK4",
+        "name": "Casquinha de Sorvete",
+        "description": "Sorvete de baunilha na casquinha crocante",
+        "imageUrl": "/assets/imgs/fish-mock.png",
+        "basePrice": 4.0,
+        "reviews": 4.5,
+        "options": []
+      },
+      {
+        "id": "prodBK5",
+        "categoryId": "catBK2",
+        "name": "Combo Whopper",
+        "description": "Whopper + Batata Média + Refrigerante",
+        "imageUrl": "/assets/imgs/fish-mock.png",
+        "basePrice": 42.9,
+        "reviews": 4.8,
+        "options": [
+          {
+            "id": "optBK5_1",
+            "type": "single",
+            "title": "Escolha seu refrigerante",
+            "minSelections": 1,
+            "maxSelections": 1,
+            "required": true,
+            "items": [
+              {
+                "id": "optBK5_1_1",
+                "name": "Coca-cola",
+                "price": 0.0
+              },
+              {
+                "id": "optBK5_1_2",
+                "name": "Guaraná",
+                "price": 0.0
+              },
+              {
+                "id": "optBK5_1_3",
+                "name": "Sprite",
+                "price": 0.0
+              }
+            ]
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "4",
@@ -277,187 +570,110 @@
     "isOpen": true,
     "closesAt": "21:30",
     "freeDeliveryThreshold": 40.0,
-    "categories": [],
-    "products": []
-  },
-  {
-    "id": "11",
-    "name": "Matsuri Concept",
-    "logoUrl": "/assets/icons/store-1.svg",
-    "deliveryFee": 0,
-    "deliveryTime": "30-40 min",
-    "distance": "5.2km",
-    "minOrderValue": 15.0,
-    "rating": 4.7,
-    "isOpen": true,
-    "closesAt": "20:00",
-    "freeDeliveryThreshold": 35.0,
-    "categories": [],
-    "products": []
-  },
-  {
-    "id": "22",
-    "name": "Subway - Avenida Center",
-    "logoUrl": "/assets/icons/store-2.svg",
-    "deliveryFee": 6.0,
-    "deliveryTime": "45-55 min",
-    "distance": "3.1km",
-    "minOrderValue": 20.0,
-    "rating": 4.7,
-    "isOpen": true,
-    "closesAt": "22:00",
-    "freeDeliveryThreshold": null,
-    "categories": [],
-    "products": []
-  },
-  {
-    "id": "33",
-    "name": "Burger King - Colombo",
-    "logoUrl": "/assets/icons/store-3.svg",
-    "deliveryFee": 6.0,
-    "deliveryTime": "35-45 min",
-    "distance": "8.5km",
-    "minOrderValue": 18.0,
-    "rating": 4.7,
-    "isOpen": true,
-    "closesAt": "23:00",
-    "freeDeliveryThreshold": null,
-    "categories": [],
-    "products": []
-  },
-  {
-    "id": "44",
-    "name": "McDonald's - Novo Centro",
-    "logoUrl": "/assets/icons/store-4.svg",
-    "deliveryFee": 0.0,
-    "deliveryTime": "25-35 min",
-    "distance": "2.8km",
-    "minOrderValue": 15.0,
-    "rating": 4.7,
-    "isOpen": true,
-    "closesAt": "21:30",
-    "freeDeliveryThreshold": 40.0,
-    "categories": [],
-    "products": []
-  },
-  {
-    "id": "111",
-    "name": "Matsuri Concept",
-    "logoUrl": "/assets/icons/store-1.svg",
-    "deliveryFee": 0,
-    "deliveryTime": "30-40 min",
-    "distance": "5.2km",
-    "minOrderValue": 15.0,
-    "rating": 4.7,
-    "isOpen": true,
-    "closesAt": "20:00",
-    "freeDeliveryThreshold": 35.0,
-    "categories": [],
-    "products": []
-  },
-  {
-    "id": "222",
-    "name": "Subway - Avenida Center",
-    "logoUrl": "/assets/icons/store-2.svg",
-    "deliveryFee": 6.0,
-    "deliveryTime": "45-55 min",
-    "distance": "3.1km",
-    "minOrderValue": 20.0,
-    "rating": 4.7,
-    "isOpen": true,
-    "closesAt": "22:00",
-    "freeDeliveryThreshold": null,
-    "categories": [],
-    "products": []
-  },
-  {
-    "id": "333",
-    "name": "Burger King - Colombo",
-    "logoUrl": "/assets/icons/store-3.svg",
-    "deliveryFee": 6.0,
-    "deliveryTime": "35-45 min",
-    "distance": "8.5km",
-    "minOrderValue": 18.0,
-    "rating": 4.7,
-    "isOpen": true,
-    "closesAt": "23:00",
-    "freeDeliveryThreshold": null,
-    "categories": [],
-    "products": []
-  },
-  {
-    "id": "444",
-    "name": "McDonald's - Novo Centro",
-    "logoUrl": "/assets/icons/store-4.svg",
-    "deliveryFee": 0.0,
-    "deliveryTime": "25-35 min",
-    "distance": "2.8km",
-    "minOrderValue": 15.0,
-    "rating": 4.7,
-    "isOpen": true,
-    "closesAt": "21:30",
-    "freeDeliveryThreshold": 40.0,
-    "categories": [],
-    "products": []
-  },
-  {
-    "id": "111f",
-    "name": "Matsuri Concept",
-    "logoUrl": "/assets/icons/store-1.svg",
-    "deliveryFee": 0,
-    "deliveryTime": "30-40 min",
-    "distance": "5.2km",
-    "minOrderValue": 15.0,
-    "rating": 4.7,
-    "isOpen": false,
-    "closesAt": "20:00",
-    "freeDeliveryThreshold": 35.0,
-    "categories": [],
-    "products": []
-  },
-  {
-    "id": "222f",
-    "name": "Subway - Avenida Center",
-    "logoUrl": "/assets/icons/store-2.svg",
-    "deliveryFee": 6.0,
-    "deliveryTime": "45-55 min",
-    "distance": "3.1km",
-    "minOrderValue": 20.0,
-    "rating": 4.7,
-    "isOpen": false,
-    "closesAt": "22:00",
-    "freeDeliveryThreshold": null,
-    "categories": [],
-    "products": []
-  },
-  {
-    "id": "333f",
-    "name": "Burger King - Colombo",
-    "logoUrl": "/assets/icons/store-3.svg",
-    "deliveryFee": 6.0,
-    "deliveryTime": "35-45 min",
-    "distance": "8.5km",
-    "minOrderValue": 18.0,
-    "rating": 4.7,
-    "isOpen": false,
-    "closesAt": "23:00",
-    "freeDeliveryThreshold": null,
-    "categories": [],
-    "products": []
-  },
-  {
-    "id": "444f",
-    "name": "McDonald's - Novo Centro",
-    "logoUrl": "/assets/icons/store-4.svg",
-    "deliveryFee": 0.0,
-    "deliveryTime": "25-35 min",
-    "distance": "2.8km",
-    "minOrderValue": 15.0,
-    "rating": 4.7,
-    "isOpen": false,
-    "closesAt": "21:30",
-    "freeDeliveryThreshold": 40.0,
-    "categories": [],
-    "products": []
+    "categories": [
+      {
+        "id": "catMC1",
+        "name": "Sanduíches",
+        "description": "Os clássicos e as novidades!"
+      },
+      {
+        "id": "catMC2",
+        "name": "Combos",
+        "description": "Seu sanduíche preferido com batata e bebida!"
+      },
+      {
+        "id": "catMC3",
+        "name": "Acompanhamentos",
+        "description": "Batata, McNuggets e mais!"
+      },
+      {
+        "id": "catMC4",
+        "name": "Sobremesas",
+        "description": "McFlurry, Sundae e outras delícias!"
+      },
+      {
+        "id": "catMC5",
+        "name": "Bebidas",
+        "description": ""
+      }
+    ],
+    "products": [
+      {
+        "id": "prodMC1",
+        "categoryId": "catMC1",
+        "name": "Big Mac",
+        "description": "Dois hambúrgueres, alface, queijo, molho especial, cebola e picles num pão com gergelim",
+        "imageUrl": "/assets/imgs/fish-mock.png",
+        "basePrice": 26.9,
+        "reviews": 4.9,
+        "options": []
+      },
+      {
+        "id": "prodMC2",
+        "categoryId": "catMC1",
+        "name": "McChicken",
+        "description": "Frango empanado, alface e maionese no pão",
+        "imageUrl": "/assets/imgs/fish-mock.png",
+        "basePrice": 23.5,
+        "reviews": 4.7,
+        "options": []
+      },
+      {
+        "id": "prodMC3",
+        "categoryId": "catMC3",
+        "name": "McFritas Média",
+        "description": "Batata frita crocante e quentinha",
+        "imageUrl": "/assets/imgs/fish-mock.png",
+        "basePrice": 9.0,
+        "reviews": 4.8,
+        "options": []
+      },
+      {
+        "id": "prodMC4",
+        "categoryId": "catMC4",
+        "name": "McFlurry Ovomaltine",
+        "description": "Sorvete de baunilha com calda e Ovomaltine",
+        "imageUrl": "/assets/imgs/fish-mock.png",
+        "basePrice": 12.0,
+        "reviews": 4.9,
+        "options": []
+      },
+      {
+        "id": "prodMC5",
+        "categoryId": "catMC2",
+        "name": "Combo Big Mac",
+        "description": "Big Mac + McFritas Média + Refrigerante",
+        "imageUrl": "/assets/imgs/fish-mock.png",
+        "basePrice": 40.0,
+        "reviews": 4.8,
+        "options": [
+          {
+            "id": "optMC5_1",
+            "type": "single",
+            "title": "Escolha seu refrigerante",
+            "minSelections": 1,
+            "maxSelections": 1,
+            "required": true,
+            "items": [
+              {
+                "id": "optMC5_1_1",
+                "name": "Coca-cola",
+                "price": 0.0
+              },
+              {
+                "id": "optMC5_1_2",
+                "name": "Fanta Guaraná",
+                "price": 0.0
+              },
+              {
+                "id": "optMC5_1_3",
+                "name": "Sprite",
+                "price": 0.0
+              }
+            ]
+          }
+        ]
+      }
+    ]
   }
 ]
