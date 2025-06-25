@@ -33,6 +33,7 @@ interface CartContextType {
   cartTotal: number;
   cartItemCount: number;
   getCartItemById: (cartItemId: string) => CartItem | undefined;
+  isCartLoading: boolean;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -43,10 +44,12 @@ interface CartProviderProps {
 
 export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [isCartLoading, setIsCartLoading] = useState(true);
 
   // Load from localStorage
   useEffect(() => {
     try {
+      console.log("get local storage");
       const storedCart = localStorage.getItem("aiqfome_cart");
       if (storedCart) {
         setCartItems(JSON.parse(storedCart));
@@ -54,17 +57,19 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
     } catch (error) {
       console.error("Erro ao carregar carrinho:", error);
       localStorage.removeItem("aiqfome_cart");
+    } finally {
+      setIsCartLoading(false);
     }
   }, []);
 
-  // Save to localStorage
-  useEffect(() => {
+  const updateLocalStorage = (newItems: CartItem[]) => {
     try {
-      localStorage.setItem("aiqfome_cart", JSON.stringify(cartItems));
+      console.log("set local storage");
+      localStorage.setItem("aiqfome_cart", JSON.stringify(newItems));
     } catch (error) {
       console.error("Erro ao salvar carrinho:", error);
     }
-  }, [cartItems]);
+  };
 
   const calculateOptionTotal = (selectedOptions: SelectedProductOption[]) => {
     return selectedOptions.reduce((sum, group) => {
@@ -85,7 +90,8 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
       selectedOptions: SelectedProductOption[]
     ): { optionTotal: number; unitPrice: number; itemTotal: number } => {
       const optionTotal = calculateOptionTotal(selectedOptions);
-      const unitPrice = product.basePrice + optionTotal;
+      const unitPrice =
+        product.options?.length > 0 ? optionTotal : product.basePrice;
       const itemTotal = unitPrice * quantity;
 
       return { optionTotal, unitPrice, itemTotal };
@@ -122,7 +128,10 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
         details: details ?? "",
       };
 
-      setCartItems((prev) => [...prev, newItem]);
+      setCartItems((prev) => {
+        updateLocalStorage([...prev, newItem]);
+        return [...prev, newItem];
+      });
     },
     [calculateItemTotalPrice]
   );
@@ -134,8 +143,8 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
       newSelectedOptions: SelectedProductOption[],
       details: string | undefined
     ) => {
-      setCartItems((prev) =>
-        prev.map((item) => {
+      setCartItems((prev) => {
+        const newItems = prev.map((item) => {
           if (item.id === cartItemId) {
             const mockProduct = {
               basePrice: item.basePrice,
@@ -155,18 +164,24 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
               optionTotalPrice: optionTotal,
               unitPrice,
               itemTotalPrice: itemTotal,
-              details: details ?? "",
+              details: details,
             };
           }
           return item;
-        })
-      );
+        });
+        updateLocalStorage(newItems);
+        return newItems;
+      });
     },
     [calculateItemTotalPrice]
   );
 
   const removeCartItem = useCallback((cartItemId: string) => {
-    setCartItems((prev) => prev.filter((item) => item.id !== cartItemId));
+    setCartItems((prev) => {
+      const newItems = prev.filter((item) => item.id !== cartItemId);
+      updateLocalStorage(newItems);
+      return newItems;
+    });
   }, []);
 
   const clearCart = useCallback(() => {
@@ -201,6 +216,7 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
         cartTotal,
         cartItemCount,
         getCartItemById,
+        isCartLoading,
       }}
     >
       {children}

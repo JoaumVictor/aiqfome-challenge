@@ -9,20 +9,31 @@ import Button from "@/components/ui/Button";
 import CartItemCard from "@/components/cart/CartItemCard";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function CartPage() {
-  const { cartItems, cartTotal, removeCartItem, updateCartItem } =
-    useCartContext();
+  const {
+    cartItems,
+    cartTotal,
+    removeCartItem,
+    updateCartItem,
+    isCartLoading,
+  } = useCartContext();
+  const router = useRouter();
 
   const [store, setStore] = useState<Store>();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    if (!isCartLoading && cartItems.length === 0) {
+      router.push("/");
+    }
+
     const fetchStore = async () => {
       if (!cartItems.length) return;
-      console.log(cartItems);
       try {
         const response = await getStoreById(cartItems[0].storeId);
+
         setStore(response);
       } catch (err) {
         console.error("Erro ao carregar loja:", err);
@@ -32,7 +43,7 @@ export default function CartPage() {
     };
 
     fetchStore();
-  }, [cartItems]);
+  }, [cartItems, isCartLoading]);
 
   const handleFinish = () => {
     console.log("finaliza compra...");
@@ -55,7 +66,7 @@ export default function CartPage() {
             className="rounded-[4px]"
           />
         ) : (
-          <div className="w-9 h-8 bg-neutral-600 rounded-sm  animate-pulse"></div>
+          <div className="w-9 h-8 bg-neutral-600 rounded-sm  animate-pulse" />
         )}
 
         <div className="text-neutral-500 flex flex-col w-full text-sm">

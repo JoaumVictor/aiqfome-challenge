@@ -45,7 +45,16 @@ export default function ProductDetailPage() {
     if (mode !== "ADD-ITEM" && mode !== "EDIT-ITEM") {
       notFound();
     }
-  }, [mode]);
+
+    if (product && mode === "EDIT-ITEM") {
+      const productInCart = cartItems.find(
+        (item) => item.productId === product.id
+      );
+      if (!productInCart) {
+        router.push("/");
+      }
+    }
+  }, [mode, product]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -261,6 +270,7 @@ export default function ProductDetailPage() {
     } else {
       addItemToCart(store.id, product, quantity, formattedOptions, details);
     }
+
     router.push(`/cart`);
   };
 
@@ -290,7 +300,7 @@ export default function ProductDetailPage() {
                 <p className="font-extrabold text-sm">
                   a partir de
                   <span className="mt-2 text-purple-500 font-extrabold text-lg">
-                    {` R$ ${totalPrice.toFixed(2).replace(".", ",")}`}
+                    {` R$ ${product?.basePrice.toFixed(2).replace(".", ",")}`}
                   </span>
                 </p>
 
@@ -305,7 +315,10 @@ export default function ProductDetailPage() {
                   <p>
                     total
                     <span className="font-bold">
-                      {` R$ ${(totalPrice ?? product.basePrice)
+                      {` R$ ${(
+                        (totalPrice && totalPrice * quantity) ??
+                        product.basePrice * quantity
+                      )
                         .toFixed(2)
                         .replace(".", ",")}`}
                     </span>
@@ -332,8 +345,15 @@ export default function ProductDetailPage() {
                         if (quantity > 1) {
                           setQuantity(quantity - 1);
                         } else {
-                          removeCartItem(product.id);
-                          router.push("/cart");
+                          const findProductInCart = cartItems.find(
+                            (item) => item.productId === product.id
+                          );
+                          if (findProductInCart) {
+                            removeCartItem(findProductInCart?.id);
+                            setTimeout(() => {
+                              router.push("/cart");
+                            }, 500);
+                          }
                         }
                       }}
                     >
@@ -341,6 +361,7 @@ export default function ProductDetailPage() {
                         width={quantity > 1 ? 24 : 20}
                         height={quantity > 1 ? 24 : 20}
                         name={quantity > 1 ? "minus-2" : "trash"}
+                        className="cursor-pointer"
                       />
                     </button>
                     <span className="w-6 text-center text-sm font-bold">
@@ -350,7 +371,23 @@ export default function ProductDetailPage() {
                       className="w-8 h-8  rounded flex items-center justify-center text-purple-500"
                       onClick={() => setQuantity(quantity + 1)}
                     >
-                      <Icon width={24} height={24} name="plus" />
+                      <Icon
+                        width={24}
+                        height={24}
+                        name="plus"
+                        className="cursor-pointer"
+                      />
+                    </button>
+                    <button
+                      className={`h-[40px] w-[108px] rounded-[8px] text-sm py-[11px] ml-2 transition-all px-[24px] text-white ${
+                        isFormValid
+                          ? "bg-purple-600 cursor-pointer hover:bg-purple-700"
+                          : "bg-neutral-400 cursor-not-allowed"
+                      }`}
+                      disabled={!isFormValid}
+                      onClick={handleSubmit}
+                    >
+                      atualizar
                     </button>
                   </div>
                 )}
