@@ -17,7 +17,7 @@ Este projeto é a solução para o desafio técnico da Aiqfome para a vaga de De
 
 ## 🛠️ Tecnologias Utilizadas
 
-- **Next.js 14+**: Framework React para desenvolvimento web.
+- **Next.js 15.3+**: Framework React para desenvolvimento web.
 - **React**: Biblioteca JavaScript para construção de interfaces de usuário.
 - **TypeScript**: Superset do JavaScript que adiciona tipagem estática.
 - **Tailwind CSS**: Framework CSS utilitário para estilização rápida e responsiva.
@@ -48,6 +48,10 @@ pnpm dev
 
 A aplicação estará disponível em http://localhost:3000.
 
+> 🚨🚨🚨 **ATENÇÃO!** 🚨🚨🚨
+>
+> 🔴 **SE FOR RODAR O PROJETO LOCALMENTE UTILIZE A BRANCH `dev`** 🔴
+
 ## 📦 Estrutura de Pastas
 
 A organização do projeto segue a estrutura padrão do Next.js com o diretório `src`:
@@ -56,29 +60,34 @@ A organização do projeto segue a estrutura padrão do Next.js com o diretório
 aiqfome-challenge/
 ├── public/                     # Arquivos estáticos
 ├── src/
-│   ├── app/                    # Rotas e layouts do Next.js (Server Components)
-│   │   ├── api/                # Rotas de API (se necessário, para mocks)
-│   │   ├── layout.tsx
-│   │   ├── page.tsx            # Home (/)
-│   │   ├── stores/             # Catálogo da loja (/stores/[storeId])
-│   │   │   ├── [storeId]/
-│   │   │   │   ├── page.tsx
-│   │   │   │   └── products/   # Pedido da loja (/stores/[storeId]/products/[productId])
-│   │   │   │       └── [productId]/
-│   │   │   │           └── page.tsx
-│   │   └── cart/               # Ticket da loja (/cart)
-│   │       └── page.tsx
-│   ├── components/             # Componentes reutilizáveis
-│   │   ├── ui/                 # Componentes genéricos de UI (botões, cards, etc.)
-│   │   └── shared/             # Componentes específicos do domínio
-│   ├── contexts/               # Contextos React para gerenciamento de estado
+│   ├── app/                    # Rotas e layout do Next.js (App Router)
+│   │   ├── cart/
+│   │   │   └── page.tsx        # Página do ticket (/cart)
+│   │   ├── stores\[storeId]/
+│   │   │   ├── item\[itemId]/  # Página do produto específico
+│   │   │   │   └── page.tsx    # (/stores/[storeId]/item/[itemId])
+│   │   │   └── page.tsx        # Página da loja (/stores/[storeId])
+│   │   ├── favicon.ico
+│   │   ├── globals.css         # Estilos globais (Tailwind)
+│   │   ├── layout.tsx          # Layout raiz do App
+│   │   └── page.tsx            # Página inicial (/)
+│   ├── components/             # Componentes reutilizáveis e por domínio
+│   │   ├── cart/               # Componentes do ticket
+│   │   ├── layout/             # Componentes de layout (Header, Footer, etc.)
+│   │   ├── productOptions/     # Componentes de opções de produto
+│   │   ├── shared/             # Outros componentes auxiliares
+│   │   ├── skeletons/          # Skeletons para carregamento
+│   │   ├── store/              # Componentes da página de loja
+│   │   └── ui/                 # Componentes genéricos de interface
+│   ├── contexts/               # Context API (ex: CartContext)
 │   ├── hooks/                  # Hooks personalizados
 │   ├── lib/                    # Funções utilitárias e lógica de negócio
-│   ├── mocks/                  # Dados mockados em .json
-│   └── types/                  # Definições de tipos TypeScript
+│   ├── mocks/                  # Dados mockados (ex: produtos)
+│   └── types/                  # Tipagens TypeScript
 ├── tailwind.config.ts          # Configuração do Tailwind CSS
 ├── tsconfig.json
 └── package.json
+
 ```
 
 ## ✨ Pontos de Destaque
@@ -91,4 +100,3 @@ aiqfome-challenge/
 ## 📝 Observações
 
 - Os dados dos produtos são mockados localmente em um arquivo `.json` (ex: `src/mocks/products.json`).
-- O foco do desafio é o desenvolvimento front-end, portanto, não há necessidade de um backend real.
