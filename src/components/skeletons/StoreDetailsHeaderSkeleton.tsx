@@ -4,7 +4,7 @@ import React from "react";
 
 const StoreDetailsHeaderSkeleton: React.FC = () => {
   return (
-    <div className="flex flex-col items-start justify-start w-full py-6 px-4 gap-2 !bg-white shadow-sm rounded-b-lg animate-pulse">
+    <div className="flex flex-col items-start justify-start w-full py-6 px-4 gap-2 !bg-white animate-pulse">
       <div className="flex items-center justify-between w-full mb-4">
         <div className="w-20 h-20 bg-gray-200 rounded-lg flex-shrink-0"></div>
         <div className="flex items-center space-x-4">

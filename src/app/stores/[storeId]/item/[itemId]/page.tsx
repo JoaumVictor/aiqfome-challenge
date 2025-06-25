@@ -274,7 +274,11 @@ export default function ProductDetailPage() {
   };
 
   if (loading || !product || !store) {
-    return <StoreDetailsHeaderSkeleton />;
+    return (
+      <Container>
+        <StoreDetailsHeaderSkeleton />
+      </Container>
+    );
   }
 
   return (
@@ -459,7 +463,6 @@ export default function ProductDetailPage() {
           </main>
         </Container>
       </section>
-
       <Footer />
     </div>
   );

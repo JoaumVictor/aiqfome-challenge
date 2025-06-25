@@ -53,6 +53,7 @@ export default function CartItemCard({
               width={item.quantity > 1 ? 24 : 20}
               height={item.quantity > 1 ? 24 : 20}
               name={item.quantity > 1 ? "minus-2" : "trash"}
+              className="cursor-pointer"
             />
           </button>
           <span className="w-6 text-center text-sm font-bold">
@@ -62,7 +63,12 @@ export default function CartItemCard({
             className="w-8 h-8  rounded flex items-center justify-center text-purple-500"
             onClick={() => onUpdateQuantity(item.id, item.quantity + 1)}
           >
-            <Icon width={24} height={24} name="plus" />
+            <Icon
+              width={24}
+              height={24}
+              name="plus"
+              className="cursor-pointer"
+            />
           </button>
         </div>
       </div>
