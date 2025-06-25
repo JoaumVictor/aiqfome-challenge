@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { notFound, useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import Container from "@/components/layout/Container";
@@ -15,6 +15,7 @@ export default function StorePage() {
   const { storeId } = useParams<{ storeId: string }>();
   const [store, setStore] = useState<Store>();
   const [loading, setLoading] = useState(true);
+  const router = useRouter();
 
   useEffect(() => {
     const fetchStoreData = async () => {
@@ -22,13 +23,13 @@ export default function StorePage() {
         setLoading(true);
         const response = await getStoreById(storeId);
         if (!response) {
-          notFound();
+          router.push("/");
         } else {
           setStore(response);
         }
       } catch (error) {
         console.error("Error fetching store:", error);
-        notFound();
+        router.push("/");
       } finally {
         setLoading(false);
       }

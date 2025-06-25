@@ -40,7 +40,7 @@ export default function ProductCard({
     <>
       <div
         onClick={handleClick}
-        className="bg-white cursor-pointer transition flex"
+        className="bg-white hover:bg-neutral-100 cursor-pointer transition-all flex"
       >
         <div className="flex flex-col justify-between items-start w-8/12">
           <div className="flex items-center justify-center gap-1">

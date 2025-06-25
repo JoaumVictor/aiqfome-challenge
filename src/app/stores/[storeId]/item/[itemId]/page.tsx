@@ -2,7 +2,7 @@
 "use client";
 
 import React, { useEffect, useMemo, useState } from "react";
-import { notFound, useParams, useSearchParams } from "next/navigation";
+import { useParams, useSearchParams } from "next/navigation";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import Container from "@/components/layout/Container";
@@ -44,7 +44,7 @@ export default function ProductDetailPage() {
 
   useEffect(() => {
     if (mode !== "ADD-ITEM" && mode !== "EDIT-ITEM") {
-      notFound();
+      router.push("/");
     }
 
     if (product && mode === "EDIT-ITEM") {
@@ -62,10 +62,16 @@ export default function ProductDetailPage() {
       try {
         setLoading(true);
         const fetchedStore = await getStoreById(storeId);
-        if (!fetchedStore) return notFound();
+        if (!fetchedStore) {
+          router.push("/");
+          return;
+        }
 
         const foundProduct = fetchedStore.products.find((p) => p.id === itemId);
-        if (!foundProduct) return notFound();
+        if (!foundProduct) {
+          router.push("/");
+          return;
+        }
 
         const hasOtherStoreItems = cartItems.some(
           (item) => item.storeId !== storeId
@@ -88,7 +94,6 @@ export default function ProductDetailPage() {
         if (mode === "EDIT-ITEM") {
           const existingItem = cartItems.find((item) => item.id === cartId);
           if (existingItem) {
-            console.log(existingItem);
             setQuantity(existingItem.quantity);
             setDetails(existingItem.details || "");
 
@@ -113,7 +118,7 @@ export default function ProductDetailPage() {
         }
       } catch (error) {
         console.error("Erro ao carregar produto:", error);
-        notFound();
+        router.push("/");
       } finally {
         setLoading(false);
       }

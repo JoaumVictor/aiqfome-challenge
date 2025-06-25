@@ -37,16 +37,16 @@ const StoreDetailsHeader: React.FC<StoreDetailsHeaderProps> = ({ store }) => {
             name="purple-share"
             height={16}
             width={16}
-            className="text-gray-500 m-[8px]"
+            className="text-gray-500 m-[8px] cursor-pointer"
           />
           <Icon
             name="purple-heart"
             height={16}
             width={16}
-            className="text-gray-500 m-[8px]"
+            className="text-gray-500 m-[8px] cursor-pointer"
           />
         </span>
-        <span className="text-teal-400 font-semibold text-xs flex items-center justify-center gap-1">
+        <span className="text-teal-400 font-semibold text-xs flex items-center justify-center gap-1 cursor-pointer">
           mais infos
           <Icon
             name="right-arrow-2"

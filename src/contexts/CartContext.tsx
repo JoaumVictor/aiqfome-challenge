@@ -47,7 +47,6 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
 
   useEffect(() => {
     try {
-      console.log("get local storage");
       const storedCart = localStorage.getItem("aiqfome_cart");
       if (storedCart) {
         setCartItems(JSON.parse(storedCart));
@@ -62,7 +61,6 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
 
   const updateLocalStorage = (newItems: CartItem[]) => {
     try {
-      console.log("set local storage");
       localStorage.setItem("aiqfome_cart", JSON.stringify(newItems));
     } catch (error) {
       console.error("Erro ao salvar carrinho:", error);
