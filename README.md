@@ -1,3 +1,7 @@
+> 🚨🚨🚨 **ATENÇÃO!** 🚨🚨🚨
+>
+> 🔴 **SE FOR RODAR O PROJETO LOCALMENTE UTILIZE A BRANCH `dev`** 🔴
+
 # Desafio Técnico Aiqfome: Front-end Mobile✨
 
 ## 📋 Descrição do Projeto
