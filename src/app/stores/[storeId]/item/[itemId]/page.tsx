@@ -173,8 +173,8 @@ export default function ProductDetailPage() {
       }
 
       if (option.type === "counter") {
-        const total = Object.values(selected || {}).reduce(
-          (acc: number, val: number) => acc + val,
+        const total = (Object.values(selected || {}) as number[]).reduce(
+          (acc, val) => acc + val,
           0
         );
         return total >= option.minSelections;
@@ -211,7 +211,9 @@ export default function ProductDetailPage() {
       if (group.type === "counter") {
         Object.entries(selected || {}).forEach(([itemId, count]) => {
           const item = group.items.find((i) => i.id === itemId);
-          if (item) total += item.price * count;
+          if (item && typeof count === "number") {
+            total += item.price * count;
+          }
         });
       }
     });
