@@ -1,10 +1,17 @@
-/** @type {import('postcss').Config} */
 module.exports = {
   plugins: {
-    tailwindcss: {},
+    "@tailwindcss/postcss": {},
     autoprefixer: {},
   },
 };
+
+// /** @type {import('postcss').Config} */
+// module.exports = {
+//   plugins: {
+//     tailwindcss: {},
+//     autoprefixer: {},
+//   },
+// };
 
 // const config = {
 //   plugins: {
