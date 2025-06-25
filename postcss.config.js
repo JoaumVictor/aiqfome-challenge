@@ -1,14 +1,14 @@
 // postcss.config.js
-const isTurbopack =
-  process.env.NEXT_RUNTIME === "edge" || process.env.TURBOPACK === "1";
-
 module.exports = {
-  plugins: isTurbopack
-    ? {
-        "@tailwindcss/postcss": {},
-      }
-    : {
-        tailwindcss: {},
-        autoprefixer: {},
-      },
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {},
+  },
 };
+
+// const config = {
+//   plugins: {
+//     "@tailwindcss/postcss": {},
+//   },
+// };
+// export default config;
