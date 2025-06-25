@@ -15,7 +15,7 @@ const Header: React.FC<HeaderProps> = ({ location }: HeaderProps) => {
   return (
     <header className="flex items-center justify-between w-full p-[16px] text-white bg-purple-500 shadow-lg z-50 max-h-[128px] flex-col gap-[16px]">
       <Container>
-        <div className="flex items-center justify-between w-full">
+        <div className="flex items-center justify-between w-full md:px-12">
           <Link href="/">
             <Icon name="aiqfome" className="text-white" />
           </Link>

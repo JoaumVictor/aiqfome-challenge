@@ -18,7 +18,7 @@ export default function HomePage() {
         <Banner src="/assets/banners/hero-banner.png" alt="hero banner" />
         <Container className="p-[16px]">
           <main className="flex flex-col gap-[8px] flex-1">
-            <section className="min-h-[calc(25vh)] mb-2">
+            <section className="min-h-[calc(5vh)] mb-2">
               <h1 className="text-xl font-extrabold my-[8px] text-purple-500">
                 abertos
               </h1>
@@ -49,7 +49,7 @@ export default function HomePage() {
                     .map((store) => <StoreCard key={store.id} store={store} />)}
               </div>
             </section>
-            <section className="mt-[8px] min-h-[calc(25vh)]">
+            <section className="mt-[8px] min-h-[calc(5vh)]">
               <h1 className="text-xl font-extrabold my-[8px] text-purple-500">
                 fechados
               </h1>
