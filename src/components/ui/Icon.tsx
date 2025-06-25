@@ -26,6 +26,7 @@ export type IconName =
   | "trash"
   | "delivery"
   | "minus"
+  | "minus-2"
   | "plus";
 
 type Props = {

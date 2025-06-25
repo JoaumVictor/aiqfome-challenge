@@ -7,10 +7,10 @@ export interface CartItem {
   basePrice: number;
   quantity: number;
   selectedOptions: SelectedProductOption[];
-
-  optionTotalPrice: number; // total dos adicionais
-  unitPrice: number; // preço unitário final
-  itemTotalPrice: number; // total da linha (unit * quantity)
+  optionTotalPrice: number;
+  unitPrice: number;
+  itemTotalPrice: number;
+  details?: string;
 }
 
 export interface SelectedProductOption {
@@ -21,6 +21,6 @@ export interface SelectedProductOption {
     id: string;
     name: string;
     price: number;
-    quantity?: number; // só para "counter"
+    quantity?: number;
   }[];
 }

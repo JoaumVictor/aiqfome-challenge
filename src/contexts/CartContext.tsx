@@ -19,12 +19,14 @@ interface CartContextType {
     storeId: string,
     product: Product,
     quantity: number,
-    selectedOptions: SelectedProductOption[]
+    selectedOptions: SelectedProductOption[],
+    details?: string
   ) => void;
   updateCartItem: (
     cartItemId: string,
     newQuantity: number,
-    newSelectedOptions: SelectedProductOption[]
+    newSelectedOptions: SelectedProductOption[],
+    details?: string
   ) => void;
   removeCartItem: (cartItemId: string) => void;
   clearCart: () => void;
@@ -83,8 +85,9 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
       selectedOptions: SelectedProductOption[]
     ): { optionTotal: number; unitPrice: number; itemTotal: number } => {
       const optionTotal = calculateOptionTotal(selectedOptions);
-      const unitPrice = optionTotal;
+      const unitPrice = product.basePrice + optionTotal;
       const itemTotal = unitPrice * quantity;
+
       return { optionTotal, unitPrice, itemTotal };
     },
     []
@@ -95,7 +98,8 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
       storeId: string,
       product: Product,
       quantity: number,
-      selectedOptions: SelectedProductOption[]
+      selectedOptions: SelectedProductOption[],
+      details: string | undefined
     ) => {
       const { optionTotal, unitPrice, itemTotal } = calculateItemTotalPrice(
         product,
@@ -115,6 +119,7 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
         unitPrice,
         optionTotalPrice: optionTotal,
         itemTotalPrice: itemTotal,
+        details: details ?? "",
       };
 
       setCartItems((prev) => [...prev, newItem]);
@@ -126,7 +131,8 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
     (
       cartItemId: string,
       newQuantity: number,
-      newSelectedOptions: SelectedProductOption[]
+      newSelectedOptions: SelectedProductOption[],
+      details: string | undefined
     ) => {
       setCartItems((prev) =>
         prev.map((item) => {
@@ -149,6 +155,7 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
               optionTotalPrice: optionTotal,
               unitPrice,
               itemTotalPrice: itemTotal,
+              details: details ?? "",
             };
           }
           return item;

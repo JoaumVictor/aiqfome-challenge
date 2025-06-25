@@ -140,6 +140,10 @@ export default function ProductDetailPage() {
 
     let total = 0;
 
+    if (product.options.length === 0) {
+      return product.basePrice;
+    }
+
     product.options.forEach((group) => {
       const selected = selectedOptions[group.id];
 
@@ -217,14 +221,14 @@ export default function ProductDetailPage() {
     if (mode === "EDIT-ITEM") {
       const existingItem = cartItems.find((item) => item.productId === itemId);
       if (existingItem) {
-        updateCartItem(existingItem.id, quantity, formattedOptions);
+        updateCartItem(existingItem.id, quantity, formattedOptions, details);
         alert("Item atualizado no carrinho!");
       }
     } else {
-      addItemToCart(store.id, product, 1, formattedOptions);
+      addItemToCart(store.id, product, 1, formattedOptions, details);
       alert("Item adicionado ao carrinho!");
     }
-    router.push(`/stores/${store.id}`);
+    router.push(`/cart`);
   };
 
   if (loading || !product || !store) {
@@ -253,7 +257,7 @@ export default function ProductDetailPage() {
                 <p className="font-extrabold text-sm">
                   a partir de
                   <span className="mt-2 text-purple-500 font-extrabold text-lg">
-                    {` R$ ${product.basePrice.toFixed(2).replace(".", ",")}`}
+                    {` R$ ${totalPrice.toFixed(2).replace(".", ",")}`}
                   </span>
                 </p>
 
@@ -268,15 +272,17 @@ export default function ProductDetailPage() {
                   <p>
                     total
                     <span className="font-bold">
-                      {` R$ ${totalPrice.toFixed(2).replace(".", ",")}`}
+                      {` R$ ${(totalPrice ?? product.basePrice)
+                        .toFixed(2)
+                        .replace(".", ",")}`}
                     </span>
                   </p>
                 </div>
 
                 <button
-                  className={`h-[40px] w-[108px] rounded-[8px] text-sm py-[11px] px-[24px] text-white ${
+                  className={`h-[40px] w-[108px] rounded-[8px] text-sm py-[11px] transition-all px-[24px] text-white ${
                     isFormValid
-                      ? "bg-purple-600"
+                      ? "bg-purple-600 cursor-pointer hover:bg-purple-700"
                       : "bg-neutral-400 cursor-not-allowed"
                   }`}
                   disabled={!isFormValid}
