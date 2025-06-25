@@ -23,6 +23,7 @@ export default function ProductDetailPage() {
   const { storeId, itemId } = useParams<{ storeId: string; itemId: string }>();
   const searchParams = useSearchParams();
   const mode = searchParams.get("type");
+  const cartId = searchParams.get("cart-id");
 
   const [store, setStore] = useState<Store | null>(null);
   const [product, setProduct] = useState<Product | null>(null);
@@ -50,7 +51,7 @@ export default function ProductDetailPage() {
       const productInCart = cartItems.find(
         (item) => item.productId === product.id
       );
-      if (!productInCart) {
+      if (!productInCart || !cartId) {
         router.push("/");
       }
     }
@@ -85,10 +86,9 @@ export default function ProductDetailPage() {
         setProduct(foundProduct);
 
         if (mode === "EDIT-ITEM") {
-          const existingItem = cartItems.find(
-            (item) => item.productId === itemId
-          );
+          const existingItem = cartItems.find((item) => item.id === cartId);
           if (existingItem) {
+            console.log(existingItem);
             setQuantity(existingItem.quantity);
             setDetails(existingItem.details || "");
 
@@ -263,9 +263,8 @@ export default function ProductDetailPage() {
     });
 
     if (mode === "EDIT-ITEM") {
-      const existingItem = cartItems.find((item) => item.productId === itemId);
-      if (existingItem) {
-        updateCartItem(existingItem.id, quantity, formattedOptions, details);
+      if (cartId) {
+        updateCartItem(cartId, quantity, formattedOptions, details);
       }
     } else {
       addItemToCart(store.id, product, quantity, formattedOptions, details);
@@ -345,11 +344,8 @@ export default function ProductDetailPage() {
                         if (quantity > 1) {
                           setQuantity(quantity - 1);
                         } else {
-                          const findProductInCart = cartItems.find(
-                            (item) => item.productId === product.id
-                          );
-                          if (findProductInCart) {
-                            removeCartItem(findProductInCart?.id);
+                          if (cartId) {
+                            removeCartItem(cartId);
                             setTimeout(() => {
                               router.push("/cart");
                             }, 500);

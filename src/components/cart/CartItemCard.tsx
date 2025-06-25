@@ -27,7 +27,9 @@ export default function CartItemCard({
       </div>
 
       <div className="flex justify-end space-x-4 items-center pt-2">
-        <Link href={`/stores/${storeId}/item/${item.productId}?type=EDIT-ITEM`}>
+        <Link
+          href={`/stores/${storeId}/item/${item.productId}?type=EDIT-ITEM&cart-id=${item.id}`}
+        >
           <div className="flex items-center gap-1 text-sm text-purple-700">
             <Icon name="pencil" width={14} height={14} />
             <span className="text-teal-400 cursor-pointer text-sm font-bold">

@@ -22,7 +22,7 @@ export default function CategorySection({ store }: { store: Store }) {
   };
 
   return (
-    <Accordion type="multiple" className="w-full ">
+    <Accordion type="multiple" className="w-full">
       {store.categories.map((category) => (
         <AccordionItem
           value={category.id}

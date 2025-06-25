@@ -126,6 +126,7 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
         optionTotalPrice: optionTotal,
         itemTotalPrice: itemTotal,
         details: details ?? "",
+        productOptions: product.options,
       };
 
       setCartItems((prev) => {
@@ -148,6 +149,7 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
           if (item.id === cartItemId) {
             const mockProduct = {
               basePrice: item.basePrice,
+              options: item.productOptions,
             } as Product;
 
             const { optionTotal, unitPrice, itemTotal } =

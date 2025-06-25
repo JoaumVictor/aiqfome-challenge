@@ -1,3 +1,5 @@
+import { Product } from "./store";
+
 export interface CartItem {
   id: string;
   storeId: string;
@@ -11,6 +13,7 @@ export interface CartItem {
   unitPrice: number;
   itemTotalPrice: number;
   details?: string;
+  productOptions: Product["options"];
 }
 
 export interface SelectedProductOption {
